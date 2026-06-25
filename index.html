@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Koffiewallet-demo: een eenvoudige digitale wallet voor koffie-aankopen.">
+  <title>Koffiewallet-demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">DE KOFFIE HALTE</p>
+        <h1 id="page-title">Koffiewallet</h1>
+        <p class="intro">Laad vooraf een bedrag op en betaal je volgende koffie rechtstreeks uit je wallet.</p>
+      </div>
+      <div class="demo-badge">Demo</div>
+    </section>
+
+    <section class="wallet-card" aria-labelledby="balance-label">
+      <div class="wallet-topline">
+        <span id="balance-label">Beschikbaar tegoed</span>
+        <span class="wallet-status"><span class="status-dot"></span> Actief</span>
+      </div>
+      <p class="balance" id="balance">€ 0,00</p>
+      <p class="wallet-note">Dit is een demonstratie. Er worden geen echte betalingen uitgevoerd.</p>
+    </section>
+
+    <section class="actions-grid" aria-label="Walletacties">
+      <article class="panel">
+        <div class="panel-heading">
+          <span class="step-number">1</span>
+          <div>
+            <h2>Tegoed toevoegen</h2>
+            <p>Kies een bedrag of vul zelf een bedrag in.</p>
+          </div>
+        </div>
+
+        <div class="quick-amounts" aria-label="Snelle bedragen">
+          <button type="button" class="amount-button" data-amount="10">€ 10</button>
+          <button type="button" class="amount-button" data-amount="20">€ 20</button>
+          <button type="button" class="amount-button" data-amount="30">€ 30</button>
+        </div>
+
+        <form id="topup-form" class="money-form">
+          <label for="topup-amount">Ander bedrag</label>
+          <div class="input-row">
+            <span class="currency-symbol">€</span>
+            <input id="topup-amount" name="topupAmount" type="number" min="0.50" step="0.01" inputmode="decimal" placeholder="0,00" required>
+            <button type="submit" class="primary-button">Toevoegen</button>
+          </div>
+        </form>
+      </article>
+
+      <article class="panel">
+        <div class="panel-heading">
+          <span class="step-number">2</span>
+          <div>
+            <h2>Aankoop afrekenen</h2>
+            <p>Trek een aankoopbedrag van je wallet af.</p>
+          </div>
+        </div>
+
+        <form id="purchase-form" class="money-form">
+          <label for="purchase-description">Omschrijving</label>
+          <input id="purchase-description" name="purchaseDescription" type="text" maxlength="40" value="Koffie-aankoop" required>
+
+          <label for="purchase-amount">Bedrag</label>
+          <div class="input-row">
+            <span class="currency-symbol">€</span>
+            <input id="purchase-amount" name="purchaseAmount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0,00" required>
+            <button type="submit" class="secondary-button">Afrekenen</button>
+          </div>
+        </form>
+      </article>
+    </section>
+
+    <section class="panel transactions-panel" aria-labelledby="transactions-title">
+      <div class="transactions-header">
+        <div>
+          <h2 id="transactions-title">Laatste transacties</h2>
+          <p>Je demo-activiteiten worden alleen in deze browser bewaard.</p>
+        </div>
+        <button type="button" id="reset-button" class="text-button">Demo resetten</button>
+      </div>
+      <ul id="transaction-list" class="transaction-list" aria-live="polite"></ul>
+    </section>
+
+    <p id="message" class="message" role="status" aria-live="polite"></p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
