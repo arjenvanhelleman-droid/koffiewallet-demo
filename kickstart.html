@@ -2,120 +2,17 @@
 <html lang="nl">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <meta name="theme-color" content="#294238">
-  <meta name="description" content="Mobiele De Koffie Halte-wallet demo">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://arjenvanhelleman-droid.github.io/koffiewallet-demo/">
+  <meta http-equiv="refresh" content="0; url=./">
   <title>De Koffie Halte Wallet</title>
-  <link rel="stylesheet" href="style.css?v=20260626-5">
-  <link rel="stylesheet" href="theme.css?v=20260626-5">
-  <link rel="stylesheet" href="online-topup.css?v=20260626-5">
-  <link rel="stylesheet" href="language.css?v=20260626-5">
-  <link rel="stylesheet" href="loyalty.css?v=20260626-5">
-  <link rel="stylesheet" href="customer-name.css?v=20260626-5">
-  <link rel="stylesheet" href="weekly-suggestion.css?v=20260626-6">
+  <script>
+    window.location.replace('./' + window.location.hash);
+  </script>
 </head>
 <body>
-  <div class="app">
-    <header class="topbar">
-      <a class="brand" href="#wallet" data-go="wallet"><span class="logo">KH</span><span><b>De Koffie Halte</b><small data-i18n="brandSubtitle">Jouw koffiewallet</small></span></a>
-      <div class="topbar-actions">
-        <div class="language-switcher">
-          <button type="button" class="language-button" id="language-button" aria-haspopup="true" aria-expanded="false"><span aria-hidden="true">🌐</span><span id="language-current">NL</span></button>
-          <div class="language-menu" id="language-menu" role="menu">
-            <button type="button" data-language="nl" role="menuitemradio">Nederlands</button>
-            <button type="button" data-language="fr" role="menuitemradio">Français</button>
-            <button type="button" data-language="en" role="menuitemradio">English</button>
-            <button type="button" data-language="es" role="menuitemradio">Español</button>
-          </div>
-        </div>
-        <span class="demo" data-i18n="demo">Demo</span>
-      </div>
-    </header>
-
-    <main>
-      <section class="screen active" id="wallet" data-screen="wallet">
-        <div class="title-row"><div><p class="eyebrow" data-i18n="greeting">GOEDEMORGEN</p><h1 id="brand-slogan">De kickstart van jouw dag</h1></div><button class="avatar" data-go="qr" data-i18n-aria="openQr" aria-label="Open QR-code">A</button></div>
-
-        <article class="wallet-card">
-          <div class="card-top"><span data-i18n="availableBalance">Beschikbaar tegoed</span><span class="status"><i></i> <span data-i18n="active">Actief</span></span></div>
-          <p class="balance" id="balance">€ 0,00</p>
-          <div class="card-bottom"><span><span data-i18n="wallet">Wallet</span> <b id="wallet-short-id">KH-0000</b></span><button data-go="qr">▦ <span data-i18n="showQr">Toon QR</span></button></div>
-        </article>
-
-        <div class="stats">
-          <article><span>✦</span><div><small data-i18n="bonusReceived">Bonus ontvangen</small><b id="bonus-total">€ 0,00</b></div></article>
-          <article><span>☕</span><div><small data-i18n="purchases">Aankopen</small><b id="purchase-count">0</b></div></article>
-        </div>
-
-        <section class="panel">
-          <div class="section-head"><div><p class="eyebrow" data-i18n="topup">OPLADEN</p><h2 data-i18n="chooseCredit">Kies je tegoed</h2></div><small data-i18n="demoPayment">Demobetaling</small></div>
-          <div class="topups">
-            <button data-topup="15" data-bonus="0"><b>€ 15</b><span data-i18n="noBonus">Zonder bonus</span></button>
-            <button class="featured" data-topup="25" data-bonus="2"><em data-i18n="popular">Populair</em><b>€ 25</b><span>+ € 2 bonus</span></button>
-            <button data-topup="50" data-bonus="5"><b>€ 50</b><span>+ € 5 bonus</span></button>
-          </div>
-          <form id="custom-topup-form" class="custom-topup">
-            <label for="custom-topup" data-i18n="otherAmount">Ander bedrag</label>
-            <div><span>€</span><input id="custom-topup" type="number" min="5" max="250" step=".01" placeholder="0,00" required><button data-i18n="add">Toevoegen</button></div>
-            <small data-i18n="bonusRule">Vanaf € 50 krijg je in deze demo 10% bonus.</small>
-          </form>
-        </section>
-
-        <section class="panel compact">
-          <div class="section-head"><div><p class="eyebrow" data-i18n="overview">OVERZICHT</p><h2 data-i18n="recentActivity">Laatste activiteit</h2></div><button class="link" data-go="activity" data-i18n="viewAll">Alles bekijken</button></div>
-          <ul class="transactions" id="recent-transactions"></ul>
-        </section>
-      </section>
-
-      <section class="screen" id="order" data-screen="order" hidden>
-        <div class="title-row"><div><p class="eyebrow" data-i18n="order">BESTELLEN</p><h1 data-i18n="whatWouldYouLike">Wat mag het zijn?</h1><p data-i18n="chooseFavorites">Kies je favorieten en betaal uit je wallet.</p></div><div class="mini-balance"><small data-i18n="credit">Tegoed</small><b id="order-balance">€ 0,00</b></div></div>
-        <div class="tabs"><button class="active" data-category="all" data-i18n="all">Alles</button><button data-category="coffee" data-i18n="coffee">Koffie</button><button data-category="other" data-i18n="other">Anders</button><button data-category="food" data-i18n="food">Iets erbij</button></div>
-        <div class="products" id="product-grid"></div>
-        <aside class="cart">
-          <div class="section-head"><div><p class="eyebrow" data-i18n="yourOrder">JOUW BESTELLING</p><h2 data-i18n="cart">Winkelmandje</h2></div><button class="link" id="clear-cart" data-i18n="clear">Leegmaken</button></div>
-          <div id="cart-items"></div>
-          <div class="cart-total"><span data-i18n="total">Totaal</span><b id="cart-total">€ 0,00</b></div>
-          <button class="pay" id="pay-cart" disabled data-i18n="payWallet">Betaal uit wallet</button>
-          <p id="cart-note" data-i18n="addProductFirst">Voeg eerst een product toe.</p>
-        </aside>
-      </section>
-
-      <section class="screen" id="qr" data-screen="qr" hidden>
-        <div class="title-row"><div><p class="eyebrow" data-i18n="myWallet">MIJN WALLET</p><h1 data-i18n="scanQr">Laat je QR-code scannen</h1><p data-i18n="qrExplanation">De kassa herkent hiermee je demo-wallet.</p></div></div>
-        <article class="qr-card">
-          <div class="qr-brand"><span class="logo">KH</span><div><b>De Koffie Halte</b><small data-i18n="personalWalletCode">Persoonlijke walletcode</small></div></div>
-          <img id="qr-code" alt="Persoonlijke QR-code" width="220" height="220">
-          <b class="wallet-id" id="wallet-id">DKH-DEMO-0000</b>
-          <p data-i18n="noRealPayment">Deze demo verwerkt geen echte betaling.</p>
-        </article>
-        <div class="qr-balance"><span data-i18n="availableAfterScan">Beschikbaar na scan</span><b id="qr-balance">€ 0,00</b></div>
-        <button class="outline" id="copy-wallet-id" data-i18n="copyWallet">Kopieer walletnummer</button>
-      </section>
-
-      <section class="screen" id="activity" data-screen="activity" hidden>
-        <div class="title-row"><div><p class="eyebrow" data-i18n="history">GESCHIEDENIS</p><h1 data-i18n="allTransactions">Alle transacties</h1><p data-i18n="storedBrowser">Alleen opgeslagen in deze browser.</p></div><button class="danger" id="reset-demo" data-i18n="resetDemo">Reset demo</button></div>
-        <section class="panel compact"><ul class="transactions" id="transaction-list"></ul></section>
-      </section>
-    </main>
-
-    <nav class="bottom-nav" aria-label="Hoofdnavigatie">
-      <button class="active" data-go="wallet"><span>◫</span><small data-i18n="navWallet">Wallet</small></button>
-      <button data-go="order"><span>☕</span><small data-i18n="navOrder">Bestellen</small></button>
-      <button class="qr-nav" data-go="qr"><span>▦</span><small data-i18n="navQr">Mijn QR</small></button>
-      <button data-go="activity"><span>↻</span><small data-i18n="navActivity">Activiteit</small></button>
-    </nav>
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  </div>
-  <script src="i18n.js?v=20260626-5"></script>
-  <script src="language-menu.js?v=20260626-5"></script>
-  <script src="slogan.js?v=20260626-5"></script>
-  <script src="customer-name.js?v=20260626-5"></script>
-  <script src="app.js?v=20260626-5"></script>
-  <script src="online-topup.js?v=20260626-5"></script>
-  <script src="loyalty.js?v=20260626-5"></script>
-  <script src="weekly-suggestion.js?v=20260626-8"></script>
+  <p>Je wordt doorgestuurd naar de officiële Koffiewallet.</p>
+  <p><a href="./">Open De Koffie Halte Wallet</a></p>
 </body>
 </html>
