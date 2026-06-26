@@ -1,0 +1,237 @@
+.loyalty-cta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  width:100%;
+  margin:14px 0 0;
+  padding:17px 18px;
+  border:1px solid rgba(214,182,106,.3);
+  border-radius:18px;
+  background:linear-gradient(145deg,#315344,#22392f);
+  color:var(--cream);
+  box-shadow:0 12px 28px rgba(5,17,12,.22);
+  text-align:left;
+}
+
+.loyalty-cta-copy{
+  display:grid;
+  gap:3px;
+}
+
+.loyalty-cta strong{
+  color:var(--gold-light);
+  font-size:1rem;
+}
+
+.loyalty-cta small{
+  color:var(--muted-gold);
+  font-size:.72rem;
+}
+
+.loyalty-progress-mini{
+  display:grid;
+  flex:0 0 auto;
+  min-width:58px;
+  height:58px;
+  place-items:center;
+  border:2px solid var(--gold);
+  border-radius:50%;
+  color:var(--gold-light);
+  font-weight:900;
+}
+
+.loyalty-overlay{
+  position:fixed;
+  z-index:110;
+  inset:0;
+  display:grid;
+  align-items:end;
+  padding:18px;
+  background:rgba(5,15,11,.74);
+  backdrop-filter:blur(8px);
+  opacity:0;
+  visibility:hidden;
+  transition:.2s ease;
+}
+
+.loyalty-overlay.open{
+  opacity:1;
+  visibility:visible;
+}
+
+.loyalty-dialog{
+  width:min(560px,100%);
+  max-height:calc(100vh - 36px);
+  margin:0 auto;
+  overflow:auto;
+  padding:22px;
+  border:1px solid rgba(214,182,106,.35);
+  border-radius:26px;
+  background:var(--mat-green);
+  box-shadow:0 24px 70px rgba(0,0,0,.42);
+  transform:translateY(24px);
+  transition:.2s ease;
+}
+
+.loyalty-overlay.open .loyalty-dialog{
+  transform:none;
+}
+
+.loyalty-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:18px;
+}
+
+.loyalty-head h2{
+  margin:3px 0 7px;
+  color:var(--gold-light);
+  font-size:1.55rem;
+}
+
+.loyalty-head p{
+  margin:0;
+  color:var(--muted-gold);
+  font-size:.82rem;
+  line-height:1.45;
+}
+
+.loyalty-close{
+  display:grid;
+  flex:0 0 auto;
+  width:38px;
+  height:38px;
+  place-items:center;
+  border:1px solid var(--green-line);
+  border-radius:12px;
+  background:var(--mat-green-soft);
+  color:var(--gold-light);
+  font-size:1.2rem;
+}
+
+.stamp-card{
+  padding:18px;
+  border:1px solid rgba(214,182,106,.24);
+  border-radius:22px;
+  background:var(--mat-green-deep);
+}
+
+.stamp-card-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.stamp-card-top span{
+  color:var(--muted-gold);
+  font-size:.76rem;
+}
+
+.stamp-card-top strong{
+  color:var(--gold-light);
+  font-size:1rem;
+}
+
+.stamp-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+}
+
+.stamp-slot{
+  display:grid;
+  aspect-ratio:1;
+  place-items:center;
+  border:1px dashed rgba(214,182,106,.45);
+  border-radius:50%;
+  background:rgba(54,86,72,.45);
+  color:rgba(239,216,146,.38);
+  font-size:1.2rem;
+}
+
+.stamp-slot.filled{
+  border-style:solid;
+  border-color:var(--gold);
+  background:var(--gold);
+  color:var(--mat-green-deep);
+  box-shadow:0 6px 14px rgba(214,182,106,.18);
+}
+
+.loyalty-status{
+  display:grid;
+  gap:12px;
+  margin-top:16px;
+}
+
+.loyalty-status-card{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:15px;
+  border:1px solid rgba(214,182,106,.2);
+  border-radius:15px;
+  background:var(--mat-green-soft);
+}
+
+.loyalty-status-card span{
+  color:var(--muted-gold);
+  font-size:.76rem;
+}
+
+.loyalty-status-card strong{
+  color:var(--gold-light);
+  font-size:1.15rem;
+}
+
+.loyalty-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:16px;
+}
+
+.loyalty-actions button{
+  min-height:46px;
+  border-radius:12px;
+  font-weight:900;
+}
+
+.loyalty-demo-stamp{
+  border:1px solid var(--gold);
+  background:transparent;
+  color:var(--gold-light);
+}
+
+.loyalty-redeem{
+  border:0;
+  background:var(--gold);
+  color:var(--mat-green-deep);
+}
+
+.loyalty-redeem:disabled{
+  cursor:not-allowed;
+  opacity:.45;
+}
+
+.loyalty-note{
+  margin:12px 0 0;
+  color:var(--muted-gold);
+  font-size:.68rem;
+  line-height:1.45;
+  text-align:center;
+}
+
+@media(min-width:620px){
+  .loyalty-overlay{align-items:center}
+}
+
+@media(max-width:430px){
+  .loyalty-actions{grid-template-columns:1fr}
+  .stamp-grid{gap:8px}
+}
