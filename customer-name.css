@@ -1,0 +1,28 @@
+.customer-greeting-row{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-bottom:5px;
+}
+
+.customer-greeting-row .eyebrow{
+  margin:0;
+}
+
+.customer-name-edit{
+  display:grid;
+  width:25px;
+  height:25px;
+  place-items:center;
+  border:1px solid rgba(214,182,106,.35);
+  border-radius:8px;
+  background:rgba(23,42,34,.45);
+  color:var(--gold-light);
+  font-size:.72rem;
+  line-height:1;
+}
+
+.customer-name-edit:hover{
+  border-color:var(--gold);
+  background:rgba(214,182,106,.12);
+}
