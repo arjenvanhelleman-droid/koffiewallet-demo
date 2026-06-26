@@ -144,8 +144,6 @@
 
     window.setTimeout(() => {
       topUp(selectedAmount, selectedBonus);
-      addTransaction('topup', `Online oplading via ${selectedMethod}`, 0);
-      render();
       closeModal();
       confirmButton.disabled = false;
       confirmButton.textContent = 'Ga naar veilige betaling';
