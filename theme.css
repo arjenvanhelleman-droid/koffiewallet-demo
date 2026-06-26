@@ -1,0 +1,235 @@
+:root{
+  --mat-green:#294238;
+  --mat-green-deep:#172a22;
+  --mat-green-soft:#365648;
+  --mat-green-light:#45695a;
+  --gold:#d6b66a;
+  --gold-light:#efd892;
+  --cream:#f3ead4;
+  --muted-gold:#c9b98e;
+  --green-line:#5f796d;
+}
+
+body{
+  color:var(--cream);
+  background:
+    radial-gradient(circle at top left,rgba(214,182,106,.14),transparent 34%),
+    linear-gradient(155deg,#243c32 0%,#1d3028 100%);
+}
+
+.topbar{
+  background:linear-gradient(to bottom,rgba(36,60,50,.97),rgba(36,60,50,.86),transparent);
+}
+
+.brand,
+.brand b,
+.title-row h1,
+.section-head h2,
+.balance,
+.stats b,
+.product h3,
+.product-bottom b,
+.cart-total b,
+.wallet-id,
+.qr-balance b,
+.mini-balance b,
+.transaction-copy b{
+  color:var(--gold-light);
+}
+
+.brand small,
+.qr-brand small,
+.title-row p:last-child,
+.stats small,
+.section-head>small,
+.custom-topup label,
+.custom-topup>small,
+.cart>p,
+.transaction-copy small,
+.product p,
+.cart-item small,
+.qr-card p,
+.empty{
+  color:var(--muted-gold);
+}
+
+.logo{
+  border:1px solid rgba(214,182,106,.55);
+  background:var(--mat-green-deep);
+  color:var(--gold-light);
+  box-shadow:inset 0 0 0 1px rgba(239,216,146,.08);
+}
+
+.demo{
+  border-color:rgba(214,182,106,.55);
+  background:rgba(23,42,34,.72);
+  color:var(--gold-light);
+}
+
+.eyebrow,
+.link,
+.outline{
+  color:var(--gold);
+}
+
+.avatar{
+  border:1px solid rgba(214,182,106,.45);
+  background:var(--mat-green-soft);
+  color:var(--gold-light);
+}
+
+.wallet-card{
+  background:linear-gradient(145deg,#22392f 0%,#315344 100%);
+  border:1px solid rgba(214,182,106,.3);
+  box-shadow:0 20px 50px rgba(6,19,14,.32);
+}
+
+.wallet-card:after{
+  border-color:rgba(214,182,106,.10);
+}
+
+.card-top,
+.card-bottom{
+  color:rgba(239,216,146,.76);
+}
+
+.card-bottom button{
+  border:1px solid rgba(214,182,106,.3);
+  background:rgba(23,42,34,.46);
+  color:var(--gold-light);
+}
+
+.status i{
+  background:#9bc8ab;
+  box-shadow:0 0 0 4px rgba(155,200,171,.14);
+}
+
+.stats article,
+.panel,
+.cart,
+.product,
+.qr-card{
+  border-color:rgba(214,182,106,.18);
+  background:rgba(47,75,63,.93);
+  box-shadow:0 12px 30px rgba(7,20,15,.20);
+}
+
+.stats article>span,
+.product-icon{
+  background:var(--mat-green-deep);
+  color:var(--gold-light);
+}
+
+.topups button,
+.custom-topup input,
+.tabs button,
+.qty button{
+  border-color:var(--green-line);
+  background:#3a5b4d;
+  color:var(--cream);
+}
+
+.topups button b,
+.custom-topup>div>span,
+.cart-item b,
+.qty b{
+  color:var(--gold-light);
+}
+
+.topups button span{
+  color:var(--muted-gold);
+}
+
+.topups button.featured{
+  border-color:var(--gold);
+  background:#405f50;
+  box-shadow:inset 0 0 0 1px rgba(214,182,106,.12);
+}
+
+.topups em{
+  background:var(--gold);
+  color:var(--mat-green-deep);
+}
+
+.custom-topup input:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 4px rgba(214,182,106,.12);
+}
+
+.custom-topup button,
+.pay{
+  background:var(--gold);
+  color:var(--mat-green-deep);
+}
+
+.outline{
+  border-color:var(--gold);
+  background:transparent;
+}
+
+.transaction,
+.cart-item{
+  border-bottom-color:rgba(214,182,106,.18);
+}
+
+.positive{
+  color:#a9d7b9;
+}
+
+.negative,
+.danger{
+  color:#efa397;
+}
+
+.mini-balance,
+.qr-balance,
+.toast{
+  border:1px solid rgba(214,182,106,.24);
+  background:var(--mat-green-deep);
+  color:var(--cream);
+}
+
+.tabs button{
+  color:var(--muted-gold);
+}
+
+.tabs button.active{
+  border-color:var(--gold);
+  background:var(--gold);
+  color:var(--mat-green-deep);
+}
+
+.product-bottom button{
+  background:var(--gold);
+  color:var(--mat-green-deep);
+}
+
+.qr-card img{
+  border-color:rgba(214,182,106,.45);
+  background:#fff;
+}
+
+.bottom-nav{
+  border-color:rgba(214,182,106,.24);
+  background:rgba(29,48,40,.95);
+  box-shadow:0 18px 45px rgba(5,17,12,.34);
+}
+
+.bottom-nav button{
+  color:var(--muted-gold);
+}
+
+.bottom-nav button.active{
+  background:rgba(214,182,106,.16);
+  color:var(--gold-light);
+}
+
+.bottom-nav .qr-nav{
+  background:var(--gold);
+  color:var(--mat-green-deep);
+}
+
+.pay:disabled{
+  background:#73877c;
+  color:#d7d0bd;
+}
