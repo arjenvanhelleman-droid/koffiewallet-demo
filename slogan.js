@@ -7,12 +7,13 @@
   };
 
   function applySlogan() {
-    const heading = document.querySelector('[data-i18n="ready"]');
+    const heading = document.querySelector('#brand-slogan');
     if (!heading) return;
     const language = window.KH_I18N?.getLanguage?.() || 'nl';
     heading.textContent = slogans[language] || slogans.nl;
   }
 
   document.addEventListener('kh-language-change', applySlogan);
+  document.addEventListener('DOMContentLoaded', applySlogan);
   window.setTimeout(applySlogan, 0);
 })();
