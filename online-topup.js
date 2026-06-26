@@ -9,7 +9,7 @@
   cta.innerHTML = `
     <span>
       <strong>Saldo online opladen</strong>
-      <small>Thuis of ter plaatse via je telefoon</small>
+      <small>Demo op dit toestel — thuis of ter plaatse</small>
     </span>
     <span class="cta-arrow" aria-hidden="true">→</span>
   `;
@@ -25,7 +25,7 @@
         <div>
           <p class="eyebrow">ONLINE OPLADEN</p>
           <h2 id="online-topup-title">Vul je wallet aan</h2>
-          <p>Kies een bedrag en betaal thuis of op locatie. In deze demo wordt de betaling nagebootst.</p>
+          <p>Kies een bedrag en een betaalmethode. Dit scherm simuleert de betaling; er wordt geen echt geld afgeschreven.</p>
         </div>
         <button type="button" class="online-topup-close" aria-label="Sluiten">×</button>
       </div>
@@ -41,19 +41,18 @@
         <div><span>€</span><input id="online-custom-amount" type="number" min="5" max="250" step="0.01" inputmode="decimal" placeholder="0,00"></div>
       </div>
 
-      <p class="payment-title">Betaalmethode</p>
+      <p class="payment-title">Gesimuleerde betaalmethode</p>
       <div class="payment-methods">
-        <button type="button" class="payment-method selected" data-payment-method="Bancontact"><span><strong>Bancontact</strong><small>Handig in België</small></span></button>
+        <button type="button" class="payment-method selected" data-payment-method="Bancontact"><span><strong>Bancontact</strong><small>Beschikbaar bij een echte koppeling</small></span></button>
         <button type="button" class="payment-method" data-payment-method="Betaalkaart"><span><strong>Betaalkaart</strong><small>Debet- of kredietkaart</small></span></button>
-        <button type="button" class="payment-method" data-payment-method="Payconiq"><span><strong>Payconiq</strong><small>Mobiel betalen</small></span></button>
       </div>
 
       <div class="online-summary">
-        <span>Toegevoegd aan je wallet</span>
+        <span>Toegevoegd aan deze demo-wallet</span>
         <strong id="online-topup-total">€ 27,00</strong>
       </div>
-      <button type="button" class="online-pay-button" id="confirm-online-topup">Ga naar veilige betaling</button>
-      <p class="online-disclaimer">Demo: er wordt geen echt geld afgeschreven. Voor werkelijk gebruik is een beveiligde betaalprovider nodig.</p>
+      <button type="button" class="online-pay-button" id="confirm-online-topup">Simuleer betaling</button>
+      <p class="online-disclaimer">Het saldo wordt alleen in deze browser op dit toestel opgeslagen. Voor echt gebruik zijn een betaalprovider, beveiligde server, klantaccount en database nodig.</p>
     </section>
   `;
   document.body.appendChild(overlay);
@@ -140,14 +139,14 @@
     }
 
     confirmButton.disabled = true;
-    confirmButton.textContent = 'Betaling wordt verwerkt…';
+    confirmButton.textContent = 'Demobetaling wordt verwerkt…';
 
     window.setTimeout(() => {
       topUp(selectedAmount, selectedBonus);
       closeModal();
       confirmButton.disabled = false;
-      confirmButton.textContent = 'Ga naar veilige betaling';
-      toast(`Online oplading via ${selectedMethod} geslaagd in de demo.`);
+      confirmButton.textContent = 'Simuleer betaling';
+      toast(`Demobetaling via ${selectedMethod} geslaagd.`);
     }, 700);
   });
 
