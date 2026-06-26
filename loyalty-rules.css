@@ -1,0 +1,37 @@
+.loyalty-rules{
+  margin-top:16px;
+  padding:16px;
+  border:1px solid rgba(214,182,106,.22);
+  border-radius:17px;
+  background:rgba(23,42,34,.48);
+}
+
+.loyalty-rules h3{
+  margin:0 0 10px;
+  color:var(--gold-light);
+  font-size:.95rem;
+}
+
+.loyalty-rules ul{
+  display:grid;
+  gap:8px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+.loyalty-rules li{
+  position:relative;
+  padding-left:20px;
+  color:var(--cream);
+  font-size:.72rem;
+  line-height:1.45;
+}
+
+.loyalty-rules li::before{
+  content:'✓';
+  position:absolute;
+  left:0;
+  color:var(--gold);
+  font-weight:900;
+}
