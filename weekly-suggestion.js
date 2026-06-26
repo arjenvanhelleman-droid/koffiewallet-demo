@@ -19,12 +19,12 @@
       varietyLabel: 'Variëteit',
       variety: 'Geisha',
       farmLabel: 'Plantage',
-      farm: 'Nog te bevestigen',
+      farm: 'Santa María de Mogotón',
       altitudeLabel: 'Teelthoogte',
-      altitude: 'Nog te bevestigen',
+      altitude: '1.600 meter',
       storyTitle: 'Het verhaal achter de koffie',
-      story: 'Hoog in de bergen rond Cerro Mogotón, de hoogste top van Nicaragua, verbouwt Silvio Sanchez deze uitzonderlijke Geisha-koffie. Het koele microklimaat, de overvloedige schaduw en het langzame rijpingsproces geven de koffie een bijzondere diepte en complexiteit.',
-      verification: 'De exacte plantagenaam en teelthoogte worden toegevoegd zodra die door de leverancier zijn bevestigd.'
+      story: 'Op 1.600 meter hoogte, hoog in de bergen rond Cerro Mogotón, verbouwt Silvio Sanchez op de plantage Santa María de Mogotón deze uitzonderlijke Geisha-koffie. Het koele microklimaat, de overvloedige schaduw en het langzame rijpingsproces geven de koffie een bijzondere diepte en complexiteit.',
+      verification: 'Herkomstgegevens aangeleverd voor deze weekkoffie.'
     },
     fr: {
       label: 'SUGGESTION DE LA SEMAINE',
@@ -41,12 +41,12 @@
       varietyLabel: 'Variété',
       variety: 'Geisha',
       farmLabel: 'Plantation',
-      farm: 'À confirmer',
+      farm: 'Santa María de Mogotón',
       altitudeLabel: 'Altitude de culture',
-      altitude: 'À confirmer',
+      altitude: '1 600 mètres',
       storyTitle: 'L’histoire derrière ce café',
-      story: 'Dans les montagnes entourant le Cerro Mogotón, le plus haut sommet du Nicaragua, Silvio Sanchez cultive ce Geisha exceptionnel. Le climat frais, l’ombre abondante et la maturation lente lui donnent une profondeur et une complexité remarquables.',
-      verification: 'Le nom exact de la plantation et l’altitude seront ajoutés après confirmation par le fournisseur.'
+      story: 'À 1 600 mètres d’altitude, dans les montagnes entourant le Cerro Mogotón, Silvio Sanchez cultive ce Geisha exceptionnel sur la plantation Santa María de Mogotón. Le climat frais, l’ombre abondante et la maturation lente lui donnent une profondeur et une complexité remarquables.',
+      verification: 'Données d’origine fournies pour le café de cette semaine.'
     },
     en: {
       label: 'SUGGESTION OF THE WEEK',
@@ -63,12 +63,12 @@
       varietyLabel: 'Variety',
       variety: 'Geisha',
       farmLabel: 'Farm',
-      farm: 'To be confirmed',
+      farm: 'Santa María de Mogotón',
       altitudeLabel: 'Growing altitude',
-      altitude: 'To be confirmed',
+      altitude: '1,600 metres',
       storyTitle: 'The story behind the coffee',
-      story: 'High in the mountains around Cerro Mogotón, Nicaragua’s highest peak, Silvio Sanchez grows this exceptional Geisha coffee. The cool microclimate, abundant shade and slow ripening process give it remarkable depth and complexity.',
-      verification: 'The exact farm name and growing altitude will be added once confirmed by the supplier.'
+      story: 'At 1,600 metres above sea level, high in the mountains around Cerro Mogotón, Silvio Sanchez grows this exceptional Geisha coffee at Santa María de Mogotón. The cool microclimate, abundant shade and slow ripening process give it remarkable depth and complexity.',
+      verification: 'Origin details supplied for this week’s coffee.'
     },
     es: {
       label: 'SUGERENCIA DE LA SEMANA',
@@ -85,12 +85,12 @@
       varietyLabel: 'Variedad',
       variety: 'Geisha',
       farmLabel: 'Finca',
-      farm: 'Por confirmar',
+      farm: 'Santa María de Mogotón',
       altitudeLabel: 'Altitud de cultivo',
-      altitude: 'Por confirmar',
+      altitude: '1.600 metros',
       storyTitle: 'La historia detrás del café',
-      story: 'En las montañas que rodean el Cerro Mogotón, la cumbre más alta de Nicaragua, Silvio Sanchez cultiva este excepcional café Geisha. El clima fresco, la abundante sombra y la maduración lenta le aportan una profundidad y complejidad extraordinarias.',
-      verification: 'El nombre exacto de la finca y la altitud se añadirán cuando el proveedor los confirme.'
+      story: 'A 1.600 metros de altitud, en las montañas que rodean el Cerro Mogotón, Silvio Sanchez cultiva este excepcional café Geisha en la finca Santa María de Mogotón. El clima fresco, la abundante sombra y la maduración lenta le aportan una profundidad y complejidad extraordinarias.',
+      verification: 'Datos de origen facilitados para el café de esta semana.'
     }
   };
 
