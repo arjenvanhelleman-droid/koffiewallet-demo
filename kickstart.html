@@ -9,11 +9,11 @@
   <meta name="theme-color" content="#294238">
   <meta name="description" content="Mobiele De Koffie Halte-wallet demo">
   <title>De Koffie Halte Wallet</title>
-  <link rel="stylesheet" href="style.css?v=20260626-2">
-  <link rel="stylesheet" href="theme.css?v=20260626-2">
-  <link rel="stylesheet" href="online-topup.css?v=20260626-2">
-  <link rel="stylesheet" href="language.css?v=20260626-2">
-  <link rel="stylesheet" href="loyalty.css?v=20260626-2">
+  <link rel="stylesheet" href="style.css?v=20260626-3">
+  <link rel="stylesheet" href="theme.css?v=20260626-3">
+  <link rel="stylesheet" href="online-topup.css?v=20260626-3">
+  <link rel="stylesheet" href="language.css?v=20260626-3">
+  <link rel="stylesheet" href="loyalty.css?v=20260626-3">
 </head>
 <body>
   <div class="app">
@@ -107,24 +107,11 @@
     </nav>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </div>
-  <script src="i18n.js?v=20260626-2"></script>
-  <script src="language-menu.js?v=20260626-2"></script>
-  <script src="slogan.js?v=20260626-2"></script>
-  <script src="app.js?v=20260626-2"></script>
-  <script src="online-topup.js?v=20260626-2"></script>
-  <script src="loyalty.js?v=20260626-2"></script>
-  <script>
-    (() => {
-      const slogans = {nl:'De kickstart van jouw dag',fr:'Le coup d’envoi de votre journée',en:'The kickstart to your day',es:'El impulso para empezar tu día'};
-      const set = () => {
-        const heading = document.getElementById('brand-slogan');
-        const lang = window.KH_I18N?.getLanguage?.() || 'nl';
-        if (heading) heading.textContent = slogans[lang] || slogans.nl;
-      };
-      set();
-      document.addEventListener('kh-language-change', set);
-      new MutationObserver(set).observe(document.body,{subtree:true,childList:true,characterData:true});
-    })();
-  </script>
+  <script src="i18n.js?v=20260626-3"></script>
+  <script src="language-menu.js?v=20260626-3"></script>
+  <script src="slogan.js?v=20260626-3"></script>
+  <script src="app.js?v=20260626-3"></script>
+  <script src="online-topup.js?v=20260626-3"></script>
+  <script src="loyalty.js?v=20260626-3"></script>
 </body>
 </html>
