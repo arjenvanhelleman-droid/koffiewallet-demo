@@ -6,31 +6,91 @@
   const copy = {
     nl: {
       label: 'SUGGESTIE VAN DE WEEK',
-      title: 'Filterkoffie',
-      description: 'Helder, aromatisch en rustig gezet. Deze week extra in de kijker.',
+      title: 'Geisha filterkoffie',
+      description: 'Een uitgesproken en verfijnde koffie uit de bergen van Nicaragua.',
       stamp: '☕ 1 stempel',
-      button: 'Voeg toe aan bestelling'
+      orderButton: 'Voeg toe aan bestelling',
+      detailsButton: 'Ontdek deze koffie',
+      closeDetails: 'Verberg herkomst',
+      farmerLabel: 'Boer',
+      farmer: 'Silvio Sanchez',
+      originLabel: 'Herkomst',
+      origin: 'Cerro Mogotón, Nicaragua',
+      varietyLabel: 'Variëteit',
+      variety: 'Geisha',
+      farmLabel: 'Plantage',
+      farm: 'Nog te bevestigen',
+      altitudeLabel: 'Teelthoogte',
+      altitude: 'Nog te bevestigen',
+      storyTitle: 'Het verhaal achter de koffie',
+      story: 'Hoog in de bergen rond Cerro Mogotón, de hoogste top van Nicaragua, verbouwt Silvio Sanchez deze uitzonderlijke Geisha-koffie. Het koele microklimaat, de overvloedige schaduw en het langzame rijpingsproces geven de koffie een bijzondere diepte en complexiteit.',
+      verification: 'De exacte plantagenaam en teelthoogte worden toegevoegd zodra die door de leverancier zijn bevestigd.'
     },
     fr: {
       label: 'SUGGESTION DE LA SEMAINE',
-      title: 'Café filtre',
-      description: 'Clair, aromatique et préparé lentement. Notre suggestion de la semaine.',
+      title: 'Café filtre Geisha',
+      description: 'Un café expressif et raffiné provenant des montagnes du Nicaragua.',
       stamp: '☕ 1 tampon',
-      button: 'Ajouter à la commande'
+      orderButton: 'Ajouter à la commande',
+      detailsButton: 'Découvrir ce café',
+      closeDetails: 'Masquer l’origine',
+      farmerLabel: 'Producteur',
+      farmer: 'Silvio Sanchez',
+      originLabel: 'Origine',
+      origin: 'Cerro Mogotón, Nicaragua',
+      varietyLabel: 'Variété',
+      variety: 'Geisha',
+      farmLabel: 'Plantation',
+      farm: 'À confirmer',
+      altitudeLabel: 'Altitude de culture',
+      altitude: 'À confirmer',
+      storyTitle: 'L’histoire derrière ce café',
+      story: 'Dans les montagnes entourant le Cerro Mogotón, le plus haut sommet du Nicaragua, Silvio Sanchez cultive ce Geisha exceptionnel. Le climat frais, l’ombre abondante et la maturation lente lui donnent une profondeur et une complexité remarquables.',
+      verification: 'Le nom exact de la plantation et l’altitude seront ajoutés après confirmation par le fournisseur.'
     },
     en: {
       label: 'SUGGESTION OF THE WEEK',
-      title: 'Filter coffee',
-      description: 'Bright, aromatic and slowly brewed. This week’s featured coffee.',
+      title: 'Geisha filter coffee',
+      description: 'An expressive and refined coffee from the mountains of Nicaragua.',
       stamp: '☕ 1 stamp',
-      button: 'Add to order'
+      orderButton: 'Add to order',
+      detailsButton: 'Discover this coffee',
+      closeDetails: 'Hide origin',
+      farmerLabel: 'Farmer',
+      farmer: 'Silvio Sanchez',
+      originLabel: 'Origin',
+      origin: 'Cerro Mogotón, Nicaragua',
+      varietyLabel: 'Variety',
+      variety: 'Geisha',
+      farmLabel: 'Farm',
+      farm: 'To be confirmed',
+      altitudeLabel: 'Growing altitude',
+      altitude: 'To be confirmed',
+      storyTitle: 'The story behind the coffee',
+      story: 'High in the mountains around Cerro Mogotón, Nicaragua’s highest peak, Silvio Sanchez grows this exceptional Geisha coffee. The cool microclimate, abundant shade and slow ripening process give it remarkable depth and complexity.',
+      verification: 'The exact farm name and growing altitude will be added once confirmed by the supplier.'
     },
     es: {
       label: 'SUGERENCIA DE LA SEMANA',
-      title: 'Café de filtro',
-      description: 'Claro, aromático y preparado lentamente. La recomendación de esta semana.',
+      title: 'Café de filtro Geisha',
+      description: 'Un café expresivo y refinado procedente de las montañas de Nicaragua.',
       stamp: '☕ 1 sello',
-      button: 'Añadir al pedido'
+      orderButton: 'Añadir al pedido',
+      detailsButton: 'Descubre este café',
+      closeDetails: 'Ocultar origen',
+      farmerLabel: 'Productor',
+      farmer: 'Silvio Sanchez',
+      originLabel: 'Origen',
+      origin: 'Cerro Mogotón, Nicaragua',
+      varietyLabel: 'Variedad',
+      variety: 'Geisha',
+      farmLabel: 'Finca',
+      farm: 'Por confirmar',
+      altitudeLabel: 'Altitud de cultivo',
+      altitude: 'Por confirmar',
+      storyTitle: 'La historia detrás del café',
+      story: 'En las montañas que rodean el Cerro Mogotón, la cumbre más alta de Nicaragua, Silvio Sanchez cultiva este excepcional café Geisha. El clima fresco, la abundante sombra y la maduración lenta le aportan una profundidad y complejidad extraordinarias.',
+      verification: 'El nombre exacto de la finca y la altitud se añadirán cuando el proveedor los confirme.'
     }
   };
 
@@ -46,33 +106,90 @@
         <span class="weekly-suggestion-price" id="weekly-suggestion-price">€ 4,00</span>
         <span class="weekly-suggestion-stamp" id="weekly-suggestion-stamp"></span>
       </div>
-      <button type="button" class="weekly-suggestion-button" id="weekly-suggestion-button"></button>
+      <div class="weekly-suggestion-actions">
+        <button type="button" class="weekly-suggestion-details-button" id="weekly-suggestion-details-button" aria-expanded="false"></button>
+        <button type="button" class="weekly-suggestion-button" id="weekly-suggestion-button"></button>
+      </div>
+      <div class="weekly-coffee-details" id="weekly-coffee-details" hidden>
+        <dl class="weekly-coffee-facts">
+          <div><dt id="weekly-farmer-label"></dt><dd id="weekly-farmer"></dd></div>
+          <div><dt id="weekly-origin-label"></dt><dd id="weekly-origin"></dd></div>
+          <div><dt id="weekly-variety-label"></dt><dd id="weekly-variety"></dd></div>
+          <div><dt id="weekly-farm-label"></dt><dd id="weekly-farm"></dd></div>
+          <div><dt id="weekly-altitude-label"></dt><dd id="weekly-altitude"></dd></div>
+        </dl>
+        <h3 id="weekly-story-title"></h3>
+        <p id="weekly-story"></p>
+        <p class="weekly-verification" id="weekly-verification"></p>
+      </div>
     </div>
   `;
   firstPanel.insertAdjacentElement('beforebegin', card);
 
-  const label = card.querySelector('#weekly-suggestion-label');
-  const title = card.querySelector('#weekly-suggestion-title');
-  const description = card.querySelector('#weekly-suggestion-description');
-  const price = card.querySelector('#weekly-suggestion-price');
-  const stamp = card.querySelector('#weekly-suggestion-stamp');
-  const button = card.querySelector('#weekly-suggestion-button');
+  const elements = {
+    label: card.querySelector('#weekly-suggestion-label'),
+    title: card.querySelector('#weekly-suggestion-title'),
+    description: card.querySelector('#weekly-suggestion-description'),
+    price: card.querySelector('#weekly-suggestion-price'),
+    stamp: card.querySelector('#weekly-suggestion-stamp'),
+    orderButton: card.querySelector('#weekly-suggestion-button'),
+    detailsButton: card.querySelector('#weekly-suggestion-details-button'),
+    details: card.querySelector('#weekly-coffee-details'),
+    farmerLabel: card.querySelector('#weekly-farmer-label'),
+    farmer: card.querySelector('#weekly-farmer'),
+    originLabel: card.querySelector('#weekly-origin-label'),
+    origin: card.querySelector('#weekly-origin'),
+    varietyLabel: card.querySelector('#weekly-variety-label'),
+    variety: card.querySelector('#weekly-variety'),
+    farmLabel: card.querySelector('#weekly-farm-label'),
+    farm: card.querySelector('#weekly-farm'),
+    altitudeLabel: card.querySelector('#weekly-altitude-label'),
+    altitude: card.querySelector('#weekly-altitude'),
+    storyTitle: card.querySelector('#weekly-story-title'),
+    story: card.querySelector('#weekly-story'),
+    verification: card.querySelector('#weekly-verification')
+  };
 
   function language() {
     return window.KH_I18N?.getLanguage?.() || 'nl';
   }
 
-  function render() {
-    const strings = copy[language()] || copy.nl;
-    label.textContent = strings.label;
-    title.textContent = strings.title;
-    description.textContent = strings.description;
-    price.textContent = typeof money === 'function' ? money(4) : '€ 4,00';
-    stamp.textContent = strings.stamp;
-    button.textContent = strings.button;
+  function strings() {
+    return copy[language()] || copy.nl;
   }
 
-  button.addEventListener('click', () => {
+  function render() {
+    const text = strings();
+    elements.label.textContent = text.label;
+    elements.title.textContent = text.title;
+    elements.description.textContent = text.description;
+    elements.price.textContent = typeof money === 'function' ? money(4) : '€ 4,00';
+    elements.stamp.textContent = text.stamp;
+    elements.orderButton.textContent = text.orderButton;
+    elements.detailsButton.textContent = elements.details.hidden ? text.detailsButton : text.closeDetails;
+    elements.farmerLabel.textContent = text.farmerLabel;
+    elements.farmer.textContent = text.farmer;
+    elements.originLabel.textContent = text.originLabel;
+    elements.origin.textContent = text.origin;
+    elements.varietyLabel.textContent = text.varietyLabel;
+    elements.variety.textContent = text.variety;
+    elements.farmLabel.textContent = text.farmLabel;
+    elements.farm.textContent = text.farm;
+    elements.altitudeLabel.textContent = text.altitudeLabel;
+    elements.altitude.textContent = text.altitude;
+    elements.storyTitle.textContent = text.storyTitle;
+    elements.story.textContent = text.story;
+    elements.verification.textContent = text.verification;
+  }
+
+  elements.detailsButton.addEventListener('click', () => {
+    const willOpen = elements.details.hidden;
+    elements.details.hidden = !willOpen;
+    elements.detailsButton.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    render();
+  });
+
+  elements.orderButton.addEventListener('click', () => {
     const orderNavigation = document.querySelector('.bottom-nav [data-go="order"]');
     orderNavigation?.click();
     window.setTimeout(() => {
