@@ -1,96 +1,21 @@
 (() => {
   const walletScreen = document.querySelector('[data-screen="wallet"]');
   const firstPanel = walletScreen?.querySelector('.panel');
+  const walletApi = window.KH_WALLET_API;
   if (!walletScreen || !firstPanel) return;
 
   const copy = {
     nl: {
-      label: 'SUGGESTIE VAN DE WEEK',
-      title: 'Catuai Natural filterkoffie',
-      description: 'Een uitgesproken en verfijnde koffie uit de bergen van Nicaragua.',
-      stamp: '☕ 1 stempel',
-      orderButton: 'Voeg toe aan bestelling',
-      detailsButton: 'Ontdek deze koffie',
-      closeDetails: 'Verberg herkomst',
-      farmerLabel: 'Boer',
-      farmer: 'Silvio Sánchez',
-      originLabel: 'Herkomst',
-      origin: 'Cerro Mogotón, Nueva Segovia, Nicaragua',
-      varietyLabel: 'Variëteit',
-      variety: 'Catuai',
-      farmLabel: 'Plantage',
-      farm: 'Santa Teresa de Mogotón',
-      altitudeLabel: 'Teelthoogte',
-      altitude: '1.600 meter',
-      storyTitle: 'Het verhaal achter de koffie',
-      story: 'Op 1.600 meter hoogte, hoog in de bergen van Cerro Mogotón, verbouwt Silvio Sánchez deze Catuai-koffie op Santa Teresa de Mogotón. De constante mist, overvloedige regen en diverse schaduwbomen beschermen de planten tegen de sterke zon en laten de koffiebessen langzaam rijpen. Na de oogst worden de intacte bessen naar de droge vallei van Ocotal gebracht en volgens de natural-methode verwerkt. Paso Paso beschrijft de smaak als chocoladecrème en aardbeienmelk.',
-      verification: 'Boer, plantage, variëteit, hoogte, herkomst, verwerking en smaaknotities geverifieerd via Paso Paso.'
+      label: 'SUGGESTIE VAN DE WEEK', title: 'Catuai Natural filterkoffie', description: 'Een uitgesproken en verfijnde koffie uit de bergen van Nicaragua.', stamp: '☕ 1 stempel', orderButton: 'Voeg toe aan bestelling', detailsButton: 'Ontdek deze koffie', closeDetails: 'Verberg herkomst', farmerLabel: 'Boer', farmer: 'Silvio Sánchez', originLabel: 'Herkomst', origin: 'Cerro Mogotón, Nueva Segovia, Nicaragua', varietyLabel: 'Variëteit', variety: 'Catuai', farmLabel: 'Plantage', farm: 'Santa Teresa de Mogotón', altitudeLabel: 'Teelthoogte', altitude: '1.600 meter', storyTitle: 'Het verhaal achter de koffie', story: 'Op 1.600 meter hoogte, hoog in de bergen van Cerro Mogotón, verbouwt Silvio Sánchez deze Catuai-koffie op Santa Teresa de Mogotón. De constante mist, overvloedige regen en diverse schaduwbomen beschermen de planten tegen de sterke zon en laten de koffiebessen langzaam rijpen. Na de oogst worden de intacte bessen naar de droge vallei van Ocotal gebracht en volgens de natural-methode verwerkt. Paso Paso beschrijft de smaak als chocoladecrème en aardbeienmelk.', verification: 'Boer, plantage, variëteit, hoogte, herkomst, verwerking en smaaknotities geverifieerd via Paso Paso.', beansButton: 'Deze koffie thuis drinken – 250 g €14', lockedTitle: 'Mijn koffie thuis', lockedText: 'Alleen klanten die deze bonen kopen, ontgrendelen het persoonlijke zetadvies en de recepten.', unlockBadge: 'ONTGRENDELD NA AANKOOP', guideTitle: 'Jouw zetadvies voor thuis', coffeeName: 'Catuai Natural · Silvio Sánchez', v60Title: 'V60', v60Recipe: '15 g koffie · 250 g water · 93 °C · 2:45–3:15 min', machineTitle: 'Filtermachine', machineRecipe: '60 g koffie per liter water · medium maling', grindTitle: 'Maalgraad', grindRecipe: 'Medium-fijn. Loopt de koffie te snel door, maal dan fijner.', tasteTitle: 'Smaak om op te letten', tasteRecipe: 'Chocoladecrème · aardbeienmelk · zoete afdronk', reorder: 'Opnieuw bestellen – 250 g €14', unlockedToast: 'Demo-aankoop bevestigd. Jouw zetadvies is ontgrendeld!', reorderedToast: 'Demo: opnieuw bestellen geselecteerd.'
     },
     fr: {
-      label: 'SUGGESTION DE LA SEMAINE',
-      title: 'Café filtre Catuai Natural',
-      description: 'Un café expressif et raffiné provenant des montagnes du Nicaragua.',
-      stamp: '☕ 1 tampon',
-      orderButton: 'Ajouter à la commande',
-      detailsButton: 'Découvrir ce café',
-      closeDetails: 'Masquer l’origine',
-      farmerLabel: 'Producteur',
-      farmer: 'Silvio Sánchez',
-      originLabel: 'Origine',
-      origin: 'Cerro Mogotón, Nueva Segovia, Nicaragua',
-      varietyLabel: 'Variété',
-      variety: 'Catuai',
-      farmLabel: 'Plantation',
-      farm: 'Santa Teresa de Mogotón',
-      altitudeLabel: 'Altitude de culture',
-      altitude: '1 600 mètres',
-      storyTitle: 'L’histoire derrière ce café',
-      story: 'À 1 600 mètres d’altitude, dans les montagnes du Cerro Mogotón, Silvio Sánchez cultive ce Catuai à Santa Teresa de Mogotón. La brume constante, les pluies abondantes et les nombreux arbres d’ombrage protègent les caféiers du soleil intense et permettent aux cerises de mûrir lentement. Après la récolte, les cerises intactes sont transportées dans la vallée sèche d’Ocotal et traitées selon la méthode naturelle. Paso Paso décrit des notes de crème au chocolat et de lait à la fraise.',
-      verification: 'Producteur, plantation, variété, altitude, origine, procédé et notes gustatives vérifiés via Paso Paso.'
+      label: 'SUGGESTION DE LA SEMAINE', title: 'Café filtre Catuai Natural', description: 'Un café expressif et raffiné provenant des montagnes du Nicaragua.', stamp: '☕ 1 tampon', orderButton: 'Ajouter à la commande', detailsButton: 'Découvrir ce café', closeDetails: 'Masquer l’origine', farmerLabel: 'Producteur', farmer: 'Silvio Sánchez', originLabel: 'Origine', origin: 'Cerro Mogotón, Nueva Segovia, Nicaragua', varietyLabel: 'Variété', variety: 'Catuai', farmLabel: 'Plantation', farm: 'Santa Teresa de Mogotón', altitudeLabel: 'Altitude de culture', altitude: '1 600 mètres', storyTitle: 'L’histoire derrière ce café', story: 'À 1 600 mètres d’altitude, dans les montagnes du Cerro Mogotón, Silvio Sánchez cultive ce Catuai à Santa Teresa de Mogotón. La brume constante, les pluies abondantes et les nombreux arbres d’ombrage protègent les caféiers du soleil intense et permettent aux cerises de mûrir lentement. Après la récolte, les cerises intactes sont transportées dans la vallée sèche d’Ocotal et traitées selon la méthode naturelle. Paso Paso décrit des notes de crème au chocolat et de lait à la fraise.', verification: 'Producteur, plantation, variété, altitude, origine, procédé et notes gustatives vérifiés via Paso Paso.', beansButton: 'Boire ce café chez vous – 250 g 14 €', lockedTitle: 'Mon café à la maison', lockedText: 'Seuls les clients qui achètent ces grains déverrouillent les conseils et recettes personnalisés.', unlockBadge: 'DÉVERROUILLÉ APRÈS ACHAT', guideTitle: 'Vos conseils de préparation', coffeeName: 'Catuai Natural · Silvio Sánchez', v60Title: 'V60', v60Recipe: '15 g de café · 250 g d’eau · 93 °C · 2:45–3:15 min', machineTitle: 'Cafetière filtre', machineRecipe: '60 g de café par litre d’eau · mouture moyenne', grindTitle: 'Mouture', grindRecipe: 'Moyenne-fine. Si le café coule trop vite, moulez plus fin.', tasteTitle: 'Saveurs à découvrir', tasteRecipe: 'Crème au chocolat · lait à la fraise · finale douce', reorder: 'Commander à nouveau – 250 g 14 €', unlockedToast: 'Achat démo confirmé. Vos conseils sont déverrouillés !', reorderedToast: 'Démo : nouvelle commande sélectionnée.'
     },
     en: {
-      label: 'SUGGESTION OF THE WEEK',
-      title: 'Catuai Natural filter coffee',
-      description: 'An expressive and refined coffee from the mountains of Nicaragua.',
-      stamp: '☕ 1 stamp',
-      orderButton: 'Add to order',
-      detailsButton: 'Discover this coffee',
-      closeDetails: 'Hide origin',
-      farmerLabel: 'Farmer',
-      farmer: 'Silvio Sánchez',
-      originLabel: 'Origin',
-      origin: 'Cerro Mogotón, Nueva Segovia, Nicaragua',
-      varietyLabel: 'Variety',
-      variety: 'Catuai',
-      farmLabel: 'Farm',
-      farm: 'Santa Teresa de Mogotón',
-      altitudeLabel: 'Growing altitude',
-      altitude: '1,600 metres',
-      storyTitle: 'The story behind the coffee',
-      story: 'At 1,600 metres above sea level, high in the mountains of Cerro Mogotón, Silvio Sánchez grows this Catuai coffee at Santa Teresa de Mogotón. Constant mist, abundant rainfall and diverse shade trees protect the plants from the strong sun and allow the cherries to ripen slowly. After harvest, the intact cherries are transported to the dry valley of Ocotal and processed using the natural method. Paso Paso describes flavours of chocolate cream and strawberry milk.',
-      verification: 'Farmer, farm, variety, altitude, origin, process and tasting notes verified through Paso Paso.'
+      label: 'SUGGESTION OF THE WEEK', title: 'Catuai Natural filter coffee', description: 'An expressive and refined coffee from the mountains of Nicaragua.', stamp: '☕ 1 stamp', orderButton: 'Add to order', detailsButton: 'Discover this coffee', closeDetails: 'Hide origin', farmerLabel: 'Farmer', farmer: 'Silvio Sánchez', originLabel: 'Origin', origin: 'Cerro Mogotón, Nueva Segovia, Nicaragua', varietyLabel: 'Variety', variety: 'Catuai', farmLabel: 'Farm', farm: 'Santa Teresa de Mogotón', altitudeLabel: 'Growing altitude', altitude: '1,600 metres', storyTitle: 'The story behind the coffee', story: 'At 1,600 metres above sea level, high in the mountains of Cerro Mogotón, Silvio Sánchez grows this Catuai coffee at Santa Teresa de Mogotón. Constant mist, abundant rainfall and diverse shade trees protect the plants from the strong sun and allow the cherries to ripen slowly. After harvest, the intact cherries are transported to the dry valley of Ocotal and processed using the natural method. Paso Paso describes flavours of chocolate cream and strawberry milk.', verification: 'Farmer, farm, variety, altitude, origin, process and tasting notes verified through Paso Paso.', beansButton: 'Drink this coffee at home – 250 g €14', lockedTitle: 'My coffee at home', lockedText: 'Only customers who buy these beans unlock the personal brewing guide and recipes.', unlockBadge: 'UNLOCKED AFTER PURCHASE', guideTitle: 'Your home brewing guide', coffeeName: 'Catuai Natural · Silvio Sánchez', v60Title: 'V60', v60Recipe: '15 g coffee · 250 g water · 93 °C · 2:45–3:15 min', machineTitle: 'Filter machine', machineRecipe: '60 g coffee per litre of water · medium grind', grindTitle: 'Grind size', grindRecipe: 'Medium-fine. If the coffee runs too quickly, grind finer.', tasteTitle: 'Flavours to look for', tasteRecipe: 'Chocolate cream · strawberry milk · sweet finish', reorder: 'Order again – 250 g €14', unlockedToast: 'Demo purchase confirmed. Your brewing guide is unlocked!', reorderedToast: 'Demo: reorder selected.'
     },
     es: {
-      label: 'SUGERENCIA DE LA SEMANA',
-      title: 'Café de filtro Catuai Natural',
-      description: 'Un café expresivo y refinado procedente de las montañas de Nicaragua.',
-      stamp: '☕ 1 sello',
-      orderButton: 'Añadir al pedido',
-      detailsButton: 'Descubre este café',
-      closeDetails: 'Ocultar origen',
-      farmerLabel: 'Productor',
-      farmer: 'Silvio Sánchez',
-      originLabel: 'Origen',
-      origin: 'Cerro Mogotón, Nueva Segovia, Nicaragua',
-      varietyLabel: 'Variedad',
-      variety: 'Catuai',
-      farmLabel: 'Finca',
-      farm: 'Santa Teresa de Mogotón',
-      altitudeLabel: 'Altitud de cultivo',
-      altitude: '1.600 metros',
-      storyTitle: 'La historia detrás del café',
-      story: 'A 1.600 metros de altitud, en las montañas del Cerro Mogotón, Silvio Sánchez cultiva este café Catuai en Santa Teresa de Mogotón. La niebla constante, las lluvias abundantes y los diversos árboles de sombra protegen las plantas del fuerte sol y permiten que las cerezas maduren lentamente. Tras la cosecha, las cerezas intactas se transportan al valle seco de Ocotal y se procesan mediante el método natural. Paso Paso describe notas de crema de chocolate y leche de fresa.',
-      verification: 'Productor, finca, variedad, altitud, origen, proceso y notas de cata verificados mediante Paso Paso.'
+      label: 'SUGERENCIA DE LA SEMANA', title: 'Café de filtro Catuai Natural', description: 'Un café expresivo y refinado procedente de las montañas de Nicaragua.', stamp: '☕ 1 sello', orderButton: 'Añadir al pedido', detailsButton: 'Descubre este café', closeDetails: 'Ocultar origen', farmerLabel: 'Productor', farmer: 'Silvio Sánchez', originLabel: 'Origen', origin: 'Cerro Mogotón, Nueva Segovia, Nicaragua', varietyLabel: 'Variedad', variety: 'Catuai', farmLabel: 'Finca', farm: 'Santa Teresa de Mogotón', altitudeLabel: 'Altitud de cultivo', altitude: '1.600 metros', storyTitle: 'La historia detrás del café', story: 'A 1.600 metros de altitud, en las montañas del Cerro Mogotón, Silvio Sánchez cultiva este café Catuai en Santa Teresa de Mogotón. La niebla constante, las lluvias abundantes y los diversos árboles de sombra protegen las plantas del fuerte sol y permiten que las cerezas maduren lentamente. Tras la cosecha, las cerezas intactas se transportan al valle seco de Ocotal y se procesan mediante el método natural. Paso Paso describe notas de crema de chocolate y leche de fresa.', verification: 'Productor, finca, variedad, altitud, origen, proceso y notas de cata verificados mediante Paso Paso.', beansButton: 'Disfruta este café en casa – 250 g 14 €', lockedTitle: 'Mi café en casa', lockedText: 'Solo los clientes que compran estos granos desbloquean la guía y las recetas personalizadas.', unlockBadge: 'DESBLOQUEADO DESPUÉS DE LA COMPRA', guideTitle: 'Tu guía de preparación en casa', coffeeName: 'Catuai Natural · Silvio Sánchez', v60Title: 'V60', v60Recipe: '15 g de café · 250 g de agua · 93 °C · 2:45–3:15 min', machineTitle: 'Cafetera de filtro', machineRecipe: '60 g de café por litro de agua · molienda media', grindTitle: 'Molienda', grindRecipe: 'Media-fina. Si el café pasa demasiado rápido, muele más fino.', tasteTitle: 'Sabores a descubrir', tasteRecipe: 'Crema de chocolate · leche de fresa · final dulce', reorder: 'Pedir de nuevo – 250 g 14 €', unlockedToast: 'Compra de demostración confirmada. ¡Tu guía está desbloqueada!', reorderedToast: 'Demostración: nuevo pedido seleccionado.'
     }
   };
 
@@ -102,102 +27,44 @@
       <p class="weekly-suggestion-label" id="weekly-suggestion-label"></p>
       <h2 id="weekly-suggestion-title"></h2>
       <p class="weekly-suggestion-description" id="weekly-suggestion-description"></p>
-      <div class="weekly-suggestion-meta">
-        <span class="weekly-suggestion-price" id="weekly-suggestion-price">€ 4,00</span>
-        <span class="weekly-suggestion-stamp" id="weekly-suggestion-stamp"></span>
-      </div>
-      <div class="weekly-suggestion-actions">
-        <button type="button" class="weekly-suggestion-details-button" id="weekly-suggestion-details-button" aria-expanded="false"></button>
-        <button type="button" class="weekly-suggestion-button" id="weekly-suggestion-button"></button>
-      </div>
+      <div class="weekly-suggestion-meta"><span class="weekly-suggestion-price" id="weekly-suggestion-price">€ 4,00</span><span class="weekly-suggestion-stamp" id="weekly-suggestion-stamp"></span></div>
+      <div class="weekly-suggestion-actions"><button type="button" class="weekly-suggestion-details-button" id="weekly-suggestion-details-button" aria-expanded="false"></button><button type="button" class="weekly-suggestion-button" id="weekly-suggestion-button"></button></div>
       <div class="weekly-coffee-details" id="weekly-coffee-details" hidden>
-        <dl class="weekly-coffee-facts">
-          <div><dt id="weekly-farmer-label"></dt><dd id="weekly-farmer"></dd></div>
-          <div><dt id="weekly-origin-label"></dt><dd id="weekly-origin"></dd></div>
-          <div><dt id="weekly-variety-label"></dt><dd id="weekly-variety"></dd></div>
-          <div><dt id="weekly-farm-label"></dt><dd id="weekly-farm"></dd></div>
-          <div><dt id="weekly-altitude-label"></dt><dd id="weekly-altitude"></dd></div>
-        </dl>
-        <h3 id="weekly-story-title"></h3>
-        <p id="weekly-story"></p>
-        <p class="weekly-verification" id="weekly-verification"></p>
+        <dl class="weekly-coffee-facts"><div><dt id="weekly-farmer-label"></dt><dd id="weekly-farmer"></dd></div><div><dt id="weekly-origin-label"></dt><dd id="weekly-origin"></dd></div><div><dt id="weekly-variety-label"></dt><dd id="weekly-variety"></dd></div><div><dt id="weekly-farm-label"></dt><dd id="weekly-farm"></dd></div><div><dt id="weekly-altitude-label"></dt><dd id="weekly-altitude"></dd></div></dl>
+        <h3 id="weekly-story-title"></h3><p id="weekly-story"></p><p class="weekly-verification" id="weekly-verification"></p>
+        <section class="home-coffee">
+          <button type="button" class="home-coffee-buy" id="home-coffee-buy"></button>
+          <div class="home-coffee-lock" id="home-coffee-lock"><span aria-hidden="true">🔒</span><div><h3 id="home-coffee-lock-title"></h3><p id="home-coffee-lock-text"></p></div></div>
+          <div class="home-coffee-guide" id="home-coffee-guide" hidden><p class="home-coffee-badge" id="home-coffee-badge"></p><h3 id="home-coffee-guide-title"></h3><strong id="home-coffee-name"></strong><div class="home-coffee-recipes"><article><span>🫗</span><div><b id="home-v60-title"></b><p id="home-v60-recipe"></p></div></article><article><span>☕</span><div><b id="home-machine-title"></b><p id="home-machine-recipe"></p></div></article><article><span>⚙️</span><div><b id="home-grind-title"></b><p id="home-grind-recipe"></p></div></article><article><span>🍓</span><div><b id="home-taste-title"></b><p id="home-taste-recipe"></p></div></article></div><button type="button" class="home-coffee-reorder" id="home-coffee-reorder"></button></div>
+        </section>
       </div>
-    </div>
-  `;
+    </div>`;
   firstPanel.insertAdjacentElement('beforebegin', card);
 
-  const elements = {
-    label: card.querySelector('#weekly-suggestion-label'),
-    title: card.querySelector('#weekly-suggestion-title'),
-    description: card.querySelector('#weekly-suggestion-description'),
-    price: card.querySelector('#weekly-suggestion-price'),
-    stamp: card.querySelector('#weekly-suggestion-stamp'),
-    orderButton: card.querySelector('#weekly-suggestion-button'),
-    detailsButton: card.querySelector('#weekly-suggestion-details-button'),
-    details: card.querySelector('#weekly-coffee-details'),
-    farmerLabel: card.querySelector('#weekly-farmer-label'),
-    farmer: card.querySelector('#weekly-farmer'),
-    originLabel: card.querySelector('#weekly-origin-label'),
-    origin: card.querySelector('#weekly-origin'),
-    varietyLabel: card.querySelector('#weekly-variety-label'),
-    variety: card.querySelector('#weekly-variety'),
-    farmLabel: card.querySelector('#weekly-farm-label'),
-    farm: card.querySelector('#weekly-farm'),
-    altitudeLabel: card.querySelector('#weekly-altitude-label'),
-    altitude: card.querySelector('#weekly-altitude'),
-    storyTitle: card.querySelector('#weekly-story-title'),
-    story: card.querySelector('#weekly-story'),
-    verification: card.querySelector('#weekly-verification')
-  };
-
-  function language() {
-    return window.KH_I18N?.getLanguage?.() || 'nl';
-  }
-
-  function strings() {
-    return copy[language()] || copy.nl;
-  }
+  const get = id => card.querySelector(`#${id}`);
+  const details = get('weekly-coffee-details');
+  const language = () => window.KH_I18N?.getLanguage?.() || 'nl';
+  const strings = () => copy[language()] || copy.nl;
+  const unlocked = () => Boolean(walletApi?.getState?.().homeCoffeeUnlocked);
 
   function render() {
-    const text = strings();
-    elements.label.textContent = text.label;
-    elements.title.textContent = text.title;
-    elements.description.textContent = text.description;
-    elements.price.textContent = typeof money === 'function' ? money(4) : '€ 4,00';
-    elements.stamp.textContent = text.stamp;
-    elements.orderButton.textContent = text.orderButton;
-    elements.detailsButton.textContent = elements.details.hidden ? text.detailsButton : text.closeDetails;
-    elements.farmerLabel.textContent = text.farmerLabel;
-    elements.farmer.textContent = text.farmer;
-    elements.originLabel.textContent = text.originLabel;
-    elements.origin.textContent = text.origin;
-    elements.varietyLabel.textContent = text.varietyLabel;
-    elements.variety.textContent = text.variety;
-    elements.farmLabel.textContent = text.farmLabel;
-    elements.farm.textContent = text.farm;
-    elements.altitudeLabel.textContent = text.altitudeLabel;
-    elements.altitude.textContent = text.altitude;
-    elements.storyTitle.textContent = text.storyTitle;
-    elements.story.textContent = text.story;
-    elements.verification.textContent = text.verification;
+    const t = strings();
+    const values = {
+      'weekly-suggestion-label':t.label,'weekly-suggestion-title':t.title,'weekly-suggestion-description':t.description,'weekly-suggestion-stamp':t.stamp,'weekly-suggestion-button':t.orderButton,'weekly-suggestion-details-button':details.hidden?t.detailsButton:t.closeDetails,'weekly-farmer-label':t.farmerLabel,'weekly-farmer':t.farmer,'weekly-origin-label':t.originLabel,'weekly-origin':t.origin,'weekly-variety-label':t.varietyLabel,'weekly-variety':t.variety,'weekly-farm-label':t.farmLabel,'weekly-farm':t.farm,'weekly-altitude-label':t.altitudeLabel,'weekly-altitude':t.altitude,'weekly-story-title':t.storyTitle,'weekly-story':t.story,'weekly-verification':t.verification,'home-coffee-buy':t.beansButton,'home-coffee-lock-title':t.lockedTitle,'home-coffee-lock-text':t.lockedText,'home-coffee-badge':t.unlockBadge,'home-coffee-guide-title':t.guideTitle,'home-coffee-name':t.coffeeName,'home-v60-title':t.v60Title,'home-v60-recipe':t.v60Recipe,'home-machine-title':t.machineTitle,'home-machine-recipe':t.machineRecipe,'home-grind-title':t.grindTitle,'home-grind-recipe':t.grindRecipe,'home-taste-title':t.tasteTitle,'home-taste-recipe':t.tasteRecipe,'home-coffee-reorder':t.reorder
+    };
+    Object.entries(values).forEach(([id,value])=>{const element=get(id);if(element)element.textContent=value});
+    get('weekly-suggestion-price').textContent = typeof money === 'function' ? money(4) : '€ 4,00';
+    const isUnlocked = unlocked();
+    get('home-coffee-buy').hidden = isUnlocked;
+    get('home-coffee-lock').hidden = isUnlocked;
+    get('home-coffee-guide').hidden = !isUnlocked;
   }
 
-  elements.detailsButton.addEventListener('click', () => {
-    const willOpen = elements.details.hidden;
-    elements.details.hidden = !willOpen;
-    elements.detailsButton.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
-    render();
-  });
-
-  elements.orderButton.addEventListener('click', () => {
-    const orderNavigation = document.querySelector('.bottom-nav [data-go="order"]');
-    orderNavigation?.click();
-    window.setTimeout(() => {
-      const addFilter = document.querySelector('[data-add-product="filter"]');
-      addFilter?.click();
-    }, 0);
-  });
-
-  document.addEventListener('kh-language-change', render);
+  get('weekly-suggestion-details-button').addEventListener('click',()=>{const open=details.hidden;details.hidden=!open;get('weekly-suggestion-details-button').setAttribute('aria-expanded',open?'true':'false');render()});
+  get('weekly-suggestion-button').addEventListener('click',()=>{document.querySelector('.bottom-nav [data-go="order"]')?.click();setTimeout(()=>document.querySelector('[data-add-product="filter"]')?.click(),0)});
+  get('home-coffee-buy').addEventListener('click',()=>{const state=walletApi?.getState?.();if(!state)return;state.homeCoffeeUnlocked=true;walletApi.commit();walletApi.toast(strings().unlockedToast)});
+  get('home-coffee-reorder').addEventListener('click',()=>walletApi?.toast?.(strings().reorderedToast));
+  document.addEventListener('kh-wallet-render',render);
+  document.addEventListener('kh-language-change',render);
   render();
 })();
