@@ -3,15 +3,15 @@ const OLD_STORAGE_KEY="koffiewallet-demo-state-v1";
 const STARTING_BALANCE=20;
 
 const products=[
-  {id:"espresso",nameKey:"product_espresso",descriptionKey:"desc_espresso",price:3,category:"coffee",icon:"☕"},
-  {id:"cappuccino",nameKey:"product_cappuccino",descriptionKey:"desc_cappuccino",price:4,category:"coffee",icon:"☁️"},
-  {id:"flat-white",nameKey:"product_flatwhite",descriptionKey:"desc_flatwhite",price:4.5,category:"coffee",icon:"🥛"},
-  {id:"filter",nameKey:"product_filter",descriptionKey:"desc_filter",price:4,category:"coffee",icon:"🫗"},
-  {id:"chai",nameKey:"product_chai",descriptionKey:"desc_chai",price:4.8,category:"other",icon:"🌿"},
-  {id:"thee",nameKey:"product_tea",descriptionKey:"desc_tea",price:4,category:"other",icon:"🫖"},
-  {id:"brownie",nameKey:"product_brownie",descriptionKey:"desc_brownie",price:3.8,category:"food",icon:"🍫"},
-  {id:"bun",nameKey:"product_bun",descriptionKey:"desc_bun",price:4,category:"food",icon:"🥮"},
-  {id:"cookie",nameKey:"product_cookie",descriptionKey:"desc_cookie",price:3.5,category:"food",icon:"🍪"}
+  {id:"espresso",nameKey:"product_espresso",descriptionKey:"desc_espresso",price:3,category:"coffee",icon:"☕",stampEligible:true},
+  {id:"cappuccino",nameKey:"product_cappuccino",descriptionKey:"desc_cappuccino",price:4,category:"coffee",icon:"☁️",stampEligible:true},
+  {id:"flat-white",nameKey:"product_flatwhite",descriptionKey:"desc_flatwhite",price:4.5,category:"coffee",icon:"🥛",stampEligible:true},
+  {id:"filter",nameKey:"product_filter",descriptionKey:"desc_filter",price:4,category:"coffee",icon:"🫗",stampEligible:true},
+  {id:"chai",nameKey:"product_chai",descriptionKey:"desc_chai",price:4.8,category:"other",icon:"🌿",stampEligible:true},
+  {id:"thee",nameKey:"product_tea",descriptionKey:"desc_tea",price:4,category:"other",icon:"🫖",stampEligible:true},
+  {id:"brownie",nameKey:"product_brownie",descriptionKey:"desc_brownie",price:3.8,category:"food",icon:"🍫",stampEligible:false},
+  {id:"bun",nameKey:"product_bun",descriptionKey:"desc_bun",price:4,category:"food",icon:"🥮",stampEligible:false},
+  {id:"cookie",nameKey:"product_cookie",descriptionKey:"desc_cookie",price:3.5,category:"food",icon:"🍪",stampEligible:false}
 ];
 
 const $=selector=>document.querySelector(selector);
@@ -40,6 +40,8 @@ function initialState(){
   return{
     balance:STARTING_BALANCE,
     bonusTotal:0,
+    stamps:0,
+    rewards:0,
     walletId,
     cart:{},
     transactions:[{id:uid(),type:"topup",descriptionKey:"startCredit",amount:STARTING_BALANCE,createdAt:new Date().toISOString()}]
@@ -142,6 +144,7 @@ function render(){
   renderTransactions();
   renderQr();
   save();
+  document.dispatchEvent(new CustomEvent("kh-wallet-render",{detail:{state:{...state}}}));
 }
 
 function toast(message){
@@ -166,6 +169,29 @@ function navigate(screenName){
   $$("[data-screen]").forEach(screen=>{const active=screen.dataset.screen===screenName;screen.hidden=!active;screen.classList.toggle("active",active)});
   $$(".bottom-nav [data-go]").forEach(button=>button.classList.toggle("active",button.dataset.go===screenName));
   window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function addStamps(amount){
+  const count=Math.max(0,Math.floor(amount));
+  if(!count)return{added:0,earned:0};
+  const total=(state.stamps||0)+count;
+  const earned=Math.floor(total/10);
+  state.stamps=total%10;
+  state.rewards=(state.rewards||0)+earned;
+  return{added:count,earned};
+}
+
+function addDemoStamp(){
+  const result=addStamps(1);
+  render();
+  return result;
+}
+
+function redeemReward(){
+  if((state.rewards||0)<1)return false;
+  state.rewards-=1;
+  render();
+  return true;
 }
 
 document.addEventListener("click",event=>{
@@ -201,11 +227,15 @@ $("#pay-cart").addEventListener("click",()=>{
   const total=cartTotal();
   if(!entries.length)return;
   if(total>state.balance){toast(tr("insufficient"));navigate("wallet");return}
+  const qualifyingStamps=entries.filter(item=>item.product.stampEligible).reduce((sum,item)=>sum+item.quantity,0);
+  const stampResult=addStamps(qualifyingStamps);
   state.balance=round(state.balance-total);
   addTransaction("purchase","",total,{items:entries.map(item=>({id:item.product.id,quantity:item.quantity}))});
   state.cart={};
   render();
-  toast(tr("paidFromWallet",{amount:money(total)}));
+  const paymentMessage=tr("paidFromWallet",{amount:money(total)});
+  const stampMessage=window.KH_LOYALTY?.purchaseMessage?.(stampResult.added,stampResult.earned)||"";
+  toast(stampMessage?`${paymentMessage} ${stampMessage}`:paymentMessage);
 });
 
 $("#copy-wallet-id").addEventListener("click",async()=>{
@@ -224,5 +254,13 @@ document.addEventListener("kh-language-change",()=>{
   refreshFormatters();
   render();
 });
+
+window.KH_WALLET_API={
+  getState:()=>state,
+  commit:render,
+  toast,
+  addDemoStamp,
+  redeemReward
+};
 
 render();
