@@ -3,28 +3,37 @@ const OLD_STORAGE_KEY="koffiewallet-demo-state-v1";
 const STARTING_BALANCE=20;
 
 const products=[
-  {id:"espresso",name:"Espresso",price:3,category:"coffee",icon:"☕",description:"Kort, krachtig en puur."},
-  {id:"cappuccino",name:"Cappuccino",price:4,category:"coffee",icon:"☁️",description:"Espresso met zachte melkschuim."},
-  {id:"flat-white",name:"Flat white",price:4.5,category:"coffee",icon:"🥛",description:"Dubbele espresso, fluweelzachte melk."},
-  {id:"filter",name:"Filterkoffie",price:4,category:"coffee",icon:"🫗",description:"Helder, aromatisch en rustig gezet."},
-  {id:"chai",name:"Chai",price:4.8,category:"other",icon:"🌿",description:"Kruidig, warm en zacht."},
-  {id:"thee",name:"Thee",price:4,category:"other",icon:"🫖",description:"Een zorgvuldig gekozen infusie."},
-  {id:"brownie",name:"Brownie",price:3.8,category:"food",icon:"🍫",description:"Rijk, smeuïg en chocoladevol."},
-  {id:"bun",name:"Cinnamon bun",price:4,category:"food",icon:"🥮",description:"Zacht gebak met kaneel."},
-  {id:"cookie",name:"Cookie",price:3.5,category:"food",icon:"🍪",description:"Krokant buiten, zacht vanbinnen."}
+  {id:"espresso",nameKey:"product_espresso",descriptionKey:"desc_espresso",price:3,category:"coffee",icon:"☕"},
+  {id:"cappuccino",nameKey:"product_cappuccino",descriptionKey:"desc_cappuccino",price:4,category:"coffee",icon:"☁️"},
+  {id:"flat-white",nameKey:"product_flatwhite",descriptionKey:"desc_flatwhite",price:4.5,category:"coffee",icon:"🥛"},
+  {id:"filter",nameKey:"product_filter",descriptionKey:"desc_filter",price:4,category:"coffee",icon:"🫗"},
+  {id:"chai",nameKey:"product_chai",descriptionKey:"desc_chai",price:4.8,category:"other",icon:"🌿"},
+  {id:"thee",nameKey:"product_tea",descriptionKey:"desc_tea",price:4,category:"other",icon:"🫖"},
+  {id:"brownie",nameKey:"product_brownie",descriptionKey:"desc_brownie",price:3.8,category:"food",icon:"🍫"},
+  {id:"bun",nameKey:"product_bun",descriptionKey:"desc_bun",price:4,category:"food",icon:"🥮"},
+  {id:"cookie",nameKey:"product_cookie",descriptionKey:"desc_cookie",price:3.5,category:"food",icon:"🍪"}
 ];
 
 const $=selector=>document.querySelector(selector);
 const $$=selector=>[...document.querySelectorAll(selector)];
-const euro=new Intl.NumberFormat("nl-BE",{style:"currency",currency:"EUR",minimumFractionDigits:2});
-const dateFormat=new Intl.DateTimeFormat("nl-BE",{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"});
+let currencyFormatter;
+let dateFormatter;
 let toastTimer;
 let activeCategory="all";
 let state=loadState();
 
+function tr(key,variables={}){return window.KH_I18N?.t(key,variables)??key}
+function refreshFormatters(){
+  const locale=window.KH_I18N?.locale?.()||"nl-BE";
+  currencyFormatter=new Intl.NumberFormat(locale,{style:"currency",currency:"EUR",minimumFractionDigits:2});
+  dateFormatter=new Intl.DateTimeFormat(locale,{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"});
+}
+refreshFormatters();
+
 function uid(){return globalThis.crypto?.randomUUID?.()||`id-${Date.now()}-${Math.random().toString(16).slice(2)}`}
-function money(value){return euro.format(value)}
+function money(value){return currencyFormatter.format(value)}
 function round(value){return Math.round((value+Number.EPSILON)*100)/100}
+function productName(product){return tr(product.nameKey)}
 
 function initialState(){
   const walletId=`DKH-DEMO-${Math.floor(1000+Math.random()*9000)}`;
@@ -33,7 +42,7 @@ function initialState(){
     bonusTotal:0,
     walletId,
     cart:{},
-    transactions:[{id:uid(),type:"topup",description:"Demo-starttegoed",amount:STARTING_BALANCE,createdAt:new Date().toISOString()}]
+    transactions:[{id:uid(),type:"topup",descriptionKey:"startCredit",amount:STARTING_BALANCE,createdAt:new Date().toISOString()}]
   };
 }
 
@@ -50,21 +59,37 @@ function loadState(){
       migrated.transactions=old.transactions;
       return migrated;
     }
-  }catch(error){console.warn("Opgeslagen demo kon niet worden gelezen.",error)}
+  }catch(error){console.warn("Stored demo data could not be read.",error)}
   return initialState();
 }
 
 function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
-function addTransaction(type,description,amount){
-  state.transactions.unshift({id:uid(),type,description,amount,createdAt:new Date().toISOString()});
+function addTransaction(type,description,amount,details={}){
+  state.transactions.unshift({id:uid(),type,description,amount,createdAt:new Date().toISOString(),...details});
   state.transactions=state.transactions.slice(0,50);
 }
 
 function signedAmount(transaction){return transaction.type==="purchase"?-Math.abs(transaction.amount):Math.abs(transaction.amount)}
 
+function transactionDescription(transaction){
+  if(Array.isArray(transaction.items)){
+    return transaction.items.map(item=>{
+      const product=products.find(entry=>entry.id===item.id);
+      return `${item.quantity}× ${product?productName(product):item.id}`;
+    }).join(", ");
+  }
+  if(transaction.descriptionKey==="creditWithBonus"){
+    return tr("creditWithBonus",{amount:money(transaction.creditAmount||0),bonus:money(transaction.bonusAmount||0)});
+  }
+  if(transaction.descriptionKey)return tr(transaction.descriptionKey);
+  const legacy={"Demo-starttegoed":"startCredit","Tegoed toegevoegd":"creditAddedTransaction"};
+  if(legacy[transaction.description])return tr(legacy[transaction.description]);
+  return transaction.description||tr("creditAddedTransaction");
+}
+
 function transactionMarkup(transaction){
   const value=signedAmount(transaction);
-  return `<li class="transaction"><span class="transaction-copy"><b>${escapeHtml(transaction.description)}</b><small>${dateFormat.format(new Date(transaction.createdAt))}</small></span><strong class="transaction-amount ${value>=0?"positive":"negative"}">${value>=0?"+":"−"} ${money(Math.abs(value))}</strong></li>`;
+  return `<li class="transaction"><span class="transaction-copy"><b>${escapeHtml(transactionDescription(transaction))}</b><small>${dateFormatter.format(new Date(transaction.createdAt))}</small></span><strong class="transaction-amount ${value>=0?"positive":"negative"}">${value>=0?"+":"−"} ${money(Math.abs(value))}</strong></li>`;
 }
 
 function escapeHtml(value){
@@ -72,14 +97,15 @@ function escapeHtml(value){
 }
 
 function renderTransactions(){
-  const all=state.transactions.length?state.transactions.map(transactionMarkup).join(""):'<li class="empty">Er zijn nog geen transacties.</li>';
+  const empty=`<li class="empty">${tr("emptyTransactions")}</li>`;
+  const all=state.transactions.length?state.transactions.map(transactionMarkup).join(""):empty;
   $("#transaction-list").innerHTML=all;
-  $("#recent-transactions").innerHTML=state.transactions.length?state.transactions.slice(0,3).map(transactionMarkup).join(""):'<li class="empty">Er zijn nog geen transacties.</li>';
+  $("#recent-transactions").innerHTML=state.transactions.length?state.transactions.slice(0,3).map(transactionMarkup).join(""):empty;
 }
 
 function renderProducts(){
   const visible=activeCategory==="all"?products:products.filter(product=>product.category===activeCategory);
-  $("#product-grid").innerHTML=visible.map(product=>`<article class="product"><span class="product-icon" aria-hidden="true">${product.icon}</span><div><h3>${product.name}</h3><p>${product.description}</p></div><div class="product-bottom"><b>${money(product.price)}</b><button type="button" data-add-product="${product.id}" aria-label="Voeg ${product.name} toe">+</button></div></article>`).join("");
+  $("#product-grid").innerHTML=visible.map(product=>`<article class="product"><span class="product-icon" aria-hidden="true">${product.icon}</span><div><h3>${escapeHtml(productName(product))}</h3><p>${escapeHtml(tr(product.descriptionKey))}</p></div><div class="product-bottom"><b>${money(product.price)}</b><button type="button" data-add-product="${product.id}" aria-label="${escapeHtml(tr("addProductAria",{product:productName(product)}))}">+</button></div></article>`).join("");
 }
 
 function cartEntries(){
@@ -90,17 +116,17 @@ function cartTotal(){return round(cartEntries().reduce((sum,item)=>sum+item.prod
 
 function renderCart(){
   const entries=cartEntries();
-  $("#cart-items").innerHTML=entries.length?entries.map(({product,quantity})=>`<div class="cart-item"><div><b>${product.name}</b><small>${money(product.price)} per stuk</small></div><div class="qty"><button type="button" data-change-product="${product.id}" data-delta="-1" aria-label="Eén ${product.name} minder">−</button><b>${quantity}</b><button type="button" data-change-product="${product.id}" data-delta="1" aria-label="Eén ${product.name} meer">+</button></div></div>`).join(""):'<div class="empty">Je winkelmandje is nog leeg.</div>';
+  $("#cart-items").innerHTML=entries.length?entries.map(({product,quantity})=>`<div class="cart-item"><div><b>${escapeHtml(productName(product))}</b><small>${money(product.price)} ${tr("perItem")}</small></div><div class="qty"><button type="button" data-change-product="${product.id}" data-delta="-1" aria-label="${escapeHtml(tr("oneLessAria",{product:productName(product)}))}">−</button><b>${quantity}</b><button type="button" data-change-product="${product.id}" data-delta="1" aria-label="${escapeHtml(tr("oneMoreAria",{product:productName(product)}))}">+</button></div></div>`).join(""):`<div class="empty">${tr("cartEmpty")}</div>`;
   const total=cartTotal();
   $("#cart-total").textContent=money(total);
   $("#pay-cart").disabled=total<=0;
-  $("#cart-note").textContent=total<=0?"Voeg eerst een product toe.":total>state.balance?`Je komt ${money(total-state.balance)} tekort.`:"Voldoende saldo om af te rekenen.";
+  $("#cart-note").textContent=total<=0?tr("addProductFirst"):total>state.balance?tr("shortBy",{amount:money(total-state.balance)}):tr("enoughBalance");
 }
 
 function renderQr(){
   const payload=`https://arjenvanhelleman-droid.github.io/koffiewallet-demo/?wallet=${encodeURIComponent(state.walletId)}`;
   $("#qr-code").src=`https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&data=${encodeURIComponent(payload)}`;
-  $("#qr-code").alt=`QR-code voor wallet ${state.walletId}`;
+  $("#qr-code").alt=tr("qrAlt",{id:state.walletId});
 }
 
 function render(){
@@ -127,13 +153,13 @@ function toast(message){
 }
 
 function topUp(amount,bonus=0){
-  if(!Number.isFinite(amount)||amount<5){toast("Kies een geldig bedrag vanaf € 5.");return}
+  if(!Number.isFinite(amount)||amount<5){toast(tr("validAmount"));return}
   amount=round(amount);bonus=round(bonus);
   state.balance=round(state.balance+amount+bonus);
   state.bonusTotal=round((state.bonusTotal||0)+bonus);
-  addTransaction("topup",bonus>0?`Tegoed ${money(amount)} + bonus ${money(bonus)}`:`Tegoed toegevoegd`,amount+bonus);
+  addTransaction("topup","",amount+bonus,bonus>0?{descriptionKey:"creditWithBonus",creditAmount:amount,bonusAmount:bonus}:{descriptionKey:"creditAddedTransaction"});
   render();
-  toast(`${money(amount+bonus)} toegevoegd${bonus?` inclusief ${money(bonus)} bonus`:""}.`);
+  toast(tr("creditAdded",{amount:money(amount+bonus),bonus:bonus?tr("bonusIncluded",{bonus:money(bonus)}):""}));
 }
 
 function navigate(screenName){
@@ -150,13 +176,13 @@ document.addEventListener("click",event=>{
   if(topup){topUp(Number(topup.dataset.topup),Number(topup.dataset.bonus));return}
 
   const add=event.target.closest("[data-add-product]");
-  if(add){const id=add.dataset.addProduct;state.cart[id]=(state.cart[id]||0)+1;renderCart();save();toast("Toegevoegd aan je bestelling.");return}
+  if(add){const id=add.dataset.addProduct;state.cart[id]=(state.cart[id]||0)+1;renderCart();save();toast(tr("addedToOrder"));return}
 
   const change=event.target.closest("[data-change-product]");
   if(change){const id=change.dataset.changeProduct;state.cart[id]=Math.max(0,(state.cart[id]||0)+Number(change.dataset.delta));if(!state.cart[id])delete state.cart[id];renderCart();save();return}
 
   const category=event.target.closest("[data-category]");
-  if(category){activeCategory=category.dataset.category;$$("[data-category]").forEach(button=>button.classList.toggle("active",button===category));renderProducts()}
+  if(category){activeCategory=category.dataset.category;$$('[data-category]').forEach(button=>button.classList.toggle("active",button===category));renderProducts()}
 });
 
 $("#custom-topup-form").addEventListener("submit",event=>{
@@ -168,31 +194,35 @@ $("#custom-topup-form").addEventListener("submit",event=>{
   input.value="";
 });
 
-$("#clear-cart").addEventListener("click",()=>{state.cart={};renderCart();save();toast("Winkelmandje leeggemaakt.")});
+$("#clear-cart").addEventListener("click",()=>{state.cart={};renderCart();save();toast(tr("cartCleared"))});
 
 $("#pay-cart").addEventListener("click",()=>{
   const entries=cartEntries();
   const total=cartTotal();
   if(!entries.length)return;
-  if(total>state.balance){toast("Onvoldoende tegoed. Laad eerst je wallet op.");navigate("wallet");return}
-  const description=entries.map(item=>`${item.quantity}× ${item.product.name}`).join(", ");
+  if(total>state.balance){toast(tr("insufficient"));navigate("wallet");return}
   state.balance=round(state.balance-total);
-  addTransaction("purchase",description,total);
+  addTransaction("purchase","",total,{items:entries.map(item=>({id:item.product.id,quantity:item.quantity}))});
   state.cart={};
   render();
-  toast(`${money(total)} afgerekend uit je wallet.`);
+  toast(tr("paidFromWallet",{amount:money(total)}));
 });
 
 $("#copy-wallet-id").addEventListener("click",async()=>{
-  try{await navigator.clipboard.writeText(state.walletId);toast("Walletnummer gekopieerd.")}catch{toast(`Walletnummer: ${state.walletId}`)}
+  try{await navigator.clipboard.writeText(state.walletId);toast(tr("walletCopied"))}catch{toast(state.walletId)}
 });
 
 $("#reset-demo").addEventListener("click",()=>{
-  if(!confirm("Wil je de hele demo terugzetten naar het beginsaldo?"))return;
+  if(!confirm(tr("resetConfirm")))return;
   state=initialState();
   render();
   navigate("wallet");
-  toast("De demo is opnieuw ingesteld.");
+  toast(tr("resetDone"));
+});
+
+document.addEventListener("kh-language-change",()=>{
+  refreshFormatters();
+  render();
 });
 
 render();
