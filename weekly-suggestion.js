@@ -6,7 +6,7 @@
   const copy = {
     nl: {
       label: 'SUGGESTIE VAN DE WEEK',
-      title: 'Geisha Natural filterkoffie',
+      title: 'Catuai Natural filterkoffie',
       description: 'Een uitgesproken en verfijnde koffie uit de bergen van Nicaragua.',
       stamp: '☕ 1 stempel',
       orderButton: 'Voeg toe aan bestelling',
@@ -17,18 +17,18 @@
       originLabel: 'Herkomst',
       origin: 'Cerro Mogotón, Nueva Segovia, Nicaragua',
       varietyLabel: 'Variëteit',
-      variety: 'Geisha',
+      variety: 'Catuai',
       farmLabel: 'Plantage',
       farm: 'Santa Teresa de Mogotón',
       altitudeLabel: 'Teelthoogte',
       altitude: '1.600 meter',
       storyTitle: 'Het verhaal achter de koffie',
-      story: 'Op 1.600 meter hoogte verbouwt Silvio Sánchez deze uitzonderlijke Geisha op Santa Teresa de Mogotón. De plantage ligt hoog in de bergen van Nueva Segovia, met veel regen en beschermende schaduwbomen. Die bomen temperen de sterke zon en laten de koffiebessen langzaam rijpen. De koele nachten en natuurlijke verwerking dragen bij aan de kenmerkende tonen van aardbei en donkere chocolade.',
-      verification: 'Plantage en verhaal geverifieerd via Paso Paso; de teelthoogte is aangeleverd als productinformatie.'
+      story: 'Op 1.600 meter hoogte, hoog in de bergen van Cerro Mogotón, verbouwt Silvio Sánchez deze Catuai-koffie op Santa Teresa de Mogotón. De constante mist, overvloedige regen en diverse schaduwbomen beschermen de planten tegen de sterke zon en laten de koffiebessen langzaam rijpen. Na de oogst worden de intacte bessen naar de droge vallei van Ocotal gebracht en volgens de natural-methode verwerkt. Paso Paso beschrijft de smaak als chocoladecrème en aardbeienmelk.',
+      verification: 'Boer, plantage, variëteit, hoogte, herkomst, verwerking en smaaknotities geverifieerd via Paso Paso.'
     },
     fr: {
       label: 'SUGGESTION DE LA SEMAINE',
-      title: 'Café filtre Geisha Natural',
+      title: 'Café filtre Catuai Natural',
       description: 'Un café expressif et raffiné provenant des montagnes du Nicaragua.',
       stamp: '☕ 1 tampon',
       orderButton: 'Ajouter à la commande',
@@ -39,18 +39,18 @@
       originLabel: 'Origine',
       origin: 'Cerro Mogotón, Nueva Segovia, Nicaragua',
       varietyLabel: 'Variété',
-      variety: 'Geisha',
+      variety: 'Catuai',
       farmLabel: 'Plantation',
       farm: 'Santa Teresa de Mogotón',
       altitudeLabel: 'Altitude de culture',
       altitude: '1 600 mètres',
       storyTitle: 'L’histoire derrière ce café',
-      story: 'À 1 600 mètres d’altitude, Silvio Sánchez cultive ce Geisha exceptionnel à Santa Teresa de Mogotón. La plantation se trouve dans les montagnes de Nueva Segovia, avec des pluies abondantes et de nombreux arbres d’ombrage. Ils atténuent le fort soleil et permettent aux cerises de mûrir lentement. Les nuits fraîches et le procédé naturel contribuent aux notes caractéristiques de fraise et de chocolat noir.',
-      verification: 'Plantation et récit vérifiés via Paso Paso ; l’altitude provient des informations produit fournies.'
+      story: 'À 1 600 mètres d’altitude, dans les montagnes du Cerro Mogotón, Silvio Sánchez cultive ce Catuai à Santa Teresa de Mogotón. La brume constante, les pluies abondantes et les nombreux arbres d’ombrage protègent les caféiers du soleil intense et permettent aux cerises de mûrir lentement. Après la récolte, les cerises intactes sont transportées dans la vallée sèche d’Ocotal et traitées selon la méthode naturelle. Paso Paso décrit des notes de crème au chocolat et de lait à la fraise.',
+      verification: 'Producteur, plantation, variété, altitude, origine, procédé et notes gustatives vérifiés via Paso Paso.'
     },
     en: {
       label: 'SUGGESTION OF THE WEEK',
-      title: 'Geisha Natural filter coffee',
+      title: 'Catuai Natural filter coffee',
       description: 'An expressive and refined coffee from the mountains of Nicaragua.',
       stamp: '☕ 1 stamp',
       orderButton: 'Add to order',
@@ -61,18 +61,18 @@
       originLabel: 'Origin',
       origin: 'Cerro Mogotón, Nueva Segovia, Nicaragua',
       varietyLabel: 'Variety',
-      variety: 'Geisha',
+      variety: 'Catuai',
       farmLabel: 'Farm',
       farm: 'Santa Teresa de Mogotón',
       altitudeLabel: 'Growing altitude',
       altitude: '1,600 metres',
       storyTitle: 'The story behind the coffee',
-      story: 'At 1,600 metres above sea level, Silvio Sánchez grows this exceptional Geisha at Santa Teresa de Mogotón. The farm sits high in the mountains of Nueva Segovia, with abundant rainfall and protective shade trees. These trees soften the strong sun and allow the coffee cherries to ripen slowly. Cool nights and natural processing contribute to its signature strawberry and dark-chocolate notes.',
-      verification: 'Farm and story verified through Paso Paso; the altitude was supplied as product information.'
+      story: 'At 1,600 metres above sea level, high in the mountains of Cerro Mogotón, Silvio Sánchez grows this Catuai coffee at Santa Teresa de Mogotón. Constant mist, abundant rainfall and diverse shade trees protect the plants from the strong sun and allow the cherries to ripen slowly. After harvest, the intact cherries are transported to the dry valley of Ocotal and processed using the natural method. Paso Paso describes flavours of chocolate cream and strawberry milk.',
+      verification: 'Farmer, farm, variety, altitude, origin, process and tasting notes verified through Paso Paso.'
     },
     es: {
       label: 'SUGERENCIA DE LA SEMANA',
-      title: 'Café de filtro Geisha Natural',
+      title: 'Café de filtro Catuai Natural',
       description: 'Un café expresivo y refinado procedente de las montañas de Nicaragua.',
       stamp: '☕ 1 sello',
       orderButton: 'Añadir al pedido',
@@ -83,14 +83,14 @@
       originLabel: 'Origen',
       origin: 'Cerro Mogotón, Nueva Segovia, Nicaragua',
       varietyLabel: 'Variedad',
-      variety: 'Geisha',
+      variety: 'Catuai',
       farmLabel: 'Finca',
       farm: 'Santa Teresa de Mogotón',
       altitudeLabel: 'Altitud de cultivo',
       altitude: '1.600 metros',
       storyTitle: 'La historia detrás del café',
-      story: 'A 1.600 metros de altitud, Silvio Sánchez cultiva este excepcional Geisha en Santa Teresa de Mogotón. La finca está situada en las montañas de Nueva Segovia, con abundantes lluvias y árboles de sombra protectores. Estos reducen la intensidad del sol y permiten que las cerezas maduren lentamente. Las noches frescas y el proceso natural contribuyen a sus notas características de fresa y chocolate negro.',
-      verification: 'Finca e historia verificadas mediante Paso Paso; la altitud procede de la información de producto facilitada.'
+      story: 'A 1.600 metros de altitud, en las montañas del Cerro Mogotón, Silvio Sánchez cultiva este café Catuai en Santa Teresa de Mogotón. La niebla constante, las lluvias abundantes y los diversos árboles de sombra protegen las plantas del fuerte sol y permiten que las cerezas maduren lentamente. Tras la cosecha, las cerezas intactas se transportan al valle seco de Ocotal y se procesan mediante el método natural. Paso Paso describe notas de crema de chocolate y leche de fresa.',
+      verification: 'Productor, finca, variedad, altitud, origen, proceso y notas de cata verificados mediante Paso Paso.'
     }
   };
 
